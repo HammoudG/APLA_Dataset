@@ -1,0 +1,668 @@
+Country,Year,Codified
+Argentina,1990,1
+Argentina,1991,1
+Argentina,1992,1
+Argentina,1993,1
+Argentina,1994,1
+Argentina,1995,1
+Argentina,1996,1
+Argentina,1997,1
+Argentina,1998,1
+Argentina,1999,1
+Argentina,2000,1
+Argentina,2001,1
+Argentina,2002,1
+Argentina,2003,1
+Argentina,2004,1
+Argentina,2005,1
+Argentina,2006,1
+Argentina,2007,1
+Argentina,2008,1
+Argentina,2009,1
+Argentina,2010,1
+Argentina,2011,1
+Argentina,2012,1
+Argentina,2013,1
+Argentina,2014,1
+Argentina,2015,1
+Argentina,2016,1
+Argentina,2017,1
+Argentina,2018,1
+Bolivia,1990,1
+Bolivia,1991,1
+Bolivia,1992,1
+Bolivia,1993,1
+Bolivia,1994,1
+Bolivia,1995,1
+Bolivia,1996,1
+Bolivia,1997,1
+Bolivia,1998,1
+Bolivia,1999,1
+Bolivia,2000,1
+Bolivia,2001,1
+Bolivia,2002,1
+Bolivia,2003,1
+Bolivia,2004,1
+Bolivia,2005,1
+Bolivia,2006,1
+Bolivia,2007,1
+Bolivia,2008,1
+Bolivia,2009,1
+Bolivia,2010,1
+Bolivia,2011,1
+Bolivia,2012,1
+Bolivia,2013,1
+Bolivia,2014,1
+Bolivia,2015,1
+Bolivia,2016,1
+Bolivia,2017,1
+Bolivia,2018,1
+Brazil,1990,1
+Brazil,1991,1
+Brazil,1992,1
+Brazil,1993,1
+Brazil,1994,1
+Brazil,1995,1
+Brazil,1996,1
+Brazil,1997,1
+Brazil,1998,1
+Brazil,1999,1
+Brazil,2000,1
+Brazil,2001,1
+Brazil,2002,1
+Brazil,2003,1
+Brazil,2004,1
+Brazil,2005,1
+Brazil,2006,1
+Brazil,2007,1
+Brazil,2008,1
+Brazil,2009,1
+Brazil,2010,1
+Brazil,2011,1
+Brazil,2012,1
+Brazil,2013,1
+Brazil,2014,1
+Brazil,2015,1
+Brazil,2016,1
+Brazil,2017,1
+Brazil,2018,1
+Chile,1990,1
+Chile,1991,1
+Chile,1992,1
+Chile,1993,1
+Chile,1994,1
+Chile,1995,1
+Chile,1996,1
+Chile,1997,1
+Chile,1998,1
+Chile,1999,1
+Chile,2000,1
+Chile,2001,1
+Chile,2002,1
+Chile,2003,1
+Chile,2004,1
+Chile,2005,1
+Chile,2006,1
+Chile,2007,1
+Chile,2008,1
+Chile,2009,1
+Chile,2010,1
+Chile,2011,1
+Chile,2012,1
+Chile,2013,1
+Chile,2014,1
+Chile,2015,1
+Chile,2016,1
+Chile,2017,1
+Chile,2018,1
+Colombia,1990,1
+Colombia,1991,1
+Colombia,1992,1
+Colombia,1993,1
+Colombia,1994,1
+Colombia,1995,1
+Colombia,1996,1
+Colombia,1997,1
+Colombia,1998,1
+Colombia,1999,1
+Colombia,2000,1
+Colombia,2001,1
+Colombia,2002,1
+Colombia,2003,1
+Colombia,2004,1
+Colombia,2005,1
+Colombia,2006,1
+Colombia,2007,1
+Colombia,2008,1
+Colombia,2009,1
+Colombia,2010,1
+Colombia,2011,1
+Colombia,2012,1
+Colombia,2013,1
+Colombia,2014,1
+Colombia,2015,1
+Colombia,2016,1
+Colombia,2017,1
+Colombia,2018,1
+Costa Rica,1990,1
+Costa Rica,1991,1
+Costa Rica,1992,1
+Costa Rica,1993,1
+Costa Rica,1994,1
+Costa Rica,1995,1
+Costa Rica,1996,1
+Costa Rica,1997,1
+Costa Rica,1998,1
+Costa Rica,1999,1
+Costa Rica,2000,1
+Costa Rica,2001,1
+Costa Rica,2002,1
+Costa Rica,2003,1
+Costa Rica,2004,1
+Costa Rica,2005,1
+Costa Rica,2006,1
+Costa Rica,2007,1
+Costa Rica,2008,1
+Costa Rica,2009,1
+Costa Rica,2010,1
+Costa Rica,2011,1
+Costa Rica,2012,1
+Costa Rica,2013,1
+Costa Rica,2014,1
+Costa Rica,2015,1
+Costa Rica,2016,1
+Costa Rica,2017,1
+Costa Rica,2018,1
+Cuba,1990,1
+Cuba,1991,1
+Cuba,1992,1
+Cuba,1993,1
+Cuba,1994,1
+Cuba,1995,1
+Cuba,1996,1
+Cuba,1997,1
+Cuba,1998,1
+Cuba,1999,1
+Cuba,2000,1
+Cuba,2001,1
+Cuba,2002,1
+Cuba,2003,1
+Cuba,2004,1
+Cuba,2005,1
+Cuba,2006,1
+Cuba,2007,1
+Cuba,2008,1
+Cuba,2009,1
+Cuba,2010,1
+Cuba,2011,1
+Cuba,2012,1
+Cuba,2013,1
+Cuba,2014,1
+Cuba,2015,1
+Cuba,2016,1
+Cuba,2017,1
+Cuba,2018,1
+Dominican Republic,1990,1
+Dominican Republic,1991,1
+Dominican Republic,1992,1
+Dominican Republic,1993,1
+Dominican Republic,1994,1
+Dominican Republic,1995,1
+Dominican Republic,1996,1
+Dominican Republic,1997,1
+Dominican Republic,1998,1
+Dominican Republic,1999,1
+Dominican Republic,2000,1
+Dominican Republic,2001,1
+Dominican Republic,2002,1
+Dominican Republic,2003,1
+Dominican Republic,2004,1
+Dominican Republic,2005,1
+Dominican Republic,2006,1
+Dominican Republic,2007,1
+Dominican Republic,2008,1
+Dominican Republic,2009,1
+Dominican Republic,2010,1
+Dominican Republic,2011,1
+Dominican Republic,2012,1
+Dominican Republic,2013,1
+Dominican Republic,2014,1
+Dominican Republic,2015,1
+Dominican Republic,2016,1
+Dominican Republic,2017,1
+Dominican Republic,2018,1
+Ecuador,1990,1
+Ecuador,1991,1
+Ecuador,1992,1
+Ecuador,1993,1
+Ecuador,1994,1
+Ecuador,1995,1
+Ecuador,1996,1
+Ecuador,1997,1
+Ecuador,1998,1
+Ecuador,1999,1
+Ecuador,2000,1
+Ecuador,2001,1
+Ecuador,2002,1
+Ecuador,2003,1
+Ecuador,2004,1
+Ecuador,2005,1
+Ecuador,2006,1
+Ecuador,2007,1
+Ecuador,2008,1
+Ecuador,2009,1
+Ecuador,2010,1
+Ecuador,2011,1
+Ecuador,2012,1
+Ecuador,2013,1
+Ecuador,2014,1
+Ecuador,2015,1
+Ecuador,2016,1
+Ecuador,2017,1
+Ecuador,2018,1
+El Salvador,1990,1
+El Salvador,1991,1
+El Salvador,1992,1
+El Salvador,1993,1
+El Salvador,1994,1
+El Salvador,1995,1
+El Salvador,1996,1
+El Salvador,1997,1
+El Salvador,1998,1
+El Salvador,1999,1
+El Salvador,2000,1
+El Salvador,2001,1
+El Salvador,2002,1
+El Salvador,2003,1
+El Salvador,2004,1
+El Salvador,2005,1
+El Salvador,2006,1
+El Salvador,2007,1
+El Salvador,2008,1
+El Salvador,2009,1
+El Salvador,2010,1
+El Salvador,2011,1
+El Salvador,2012,1
+El Salvador,2013,1
+El Salvador,2014,1
+El Salvador,2015,1
+El Salvador,2016,1
+El Salvador,2017,1
+El Salvador,2018,1
+Guatemala,1990,1
+Guatemala,1991,1
+Guatemala,1992,1
+Guatemala,1993,1
+Guatemala,1994,1
+Guatemala,1995,1
+Guatemala,1996,1
+Guatemala,1997,1
+Guatemala,1998,1
+Guatemala,1999,1
+Guatemala,2000,1
+Guatemala,2001,1
+Guatemala,2002,1
+Guatemala,2003,1
+Guatemala,2004,1
+Guatemala,2005,1
+Guatemala,2006,1
+Guatemala,2007,1
+Guatemala,2008,1
+Guatemala,2009,1
+Guatemala,2010,1
+Guatemala,2011,1
+Guatemala,2012,1
+Guatemala,2013,1
+Guatemala,2014,1
+Guatemala,2015,1
+Guatemala,2016,1
+Guatemala,2017,1
+Guatemala,2018,1
+Honduras,1990,1
+Honduras,1991,1
+Honduras,1992,1
+Honduras,1993,1
+Honduras,1994,1
+Honduras,1995,1
+Honduras,1996,1
+Honduras,1997,1
+Honduras,1998,1
+Honduras,1999,1
+Honduras,2000,1
+Honduras,2001,1
+Honduras,2002,1
+Honduras,2003,1
+Honduras,2004,1
+Honduras,2005,1
+Honduras,2006,1
+Honduras,2007,1
+Honduras,2008,1
+Honduras,2009,1
+Honduras,2010,1
+Honduras,2011,1
+Honduras,2012,1
+Honduras,2013,1
+Honduras,2014,1
+Honduras,2015,1
+Honduras,2016,1
+Honduras,2017,1
+Honduras,2018,1
+Mexico,1990,1
+Mexico,1991,1
+Mexico,1992,1
+Mexico,1993,1
+Mexico,1994,1
+Mexico,1995,1
+Mexico,1996,1
+Mexico,1997,1
+Mexico,1998,1
+Mexico,1999,1
+Mexico,2000,1
+Mexico,2001,1
+Mexico,2002,1
+Mexico,2003,1
+Mexico,2004,1
+Mexico,2005,1
+Mexico,2006,1
+Mexico,2007,1
+Mexico,2008,1
+Mexico,2009,1
+Mexico,2010,1
+Mexico,2011,1
+Mexico,2012,1
+Mexico,2013,1
+Mexico,2014,1
+Mexico,2015,1
+Mexico,2016,1
+Mexico,2017,1
+Mexico,2018,1
+Nicaragua,1990,1
+Nicaragua,1991,1
+Nicaragua,1992,1
+Nicaragua,1993,1
+Nicaragua,1994,1
+Nicaragua,1995,1
+Nicaragua,1996,1
+Nicaragua,1997,1
+Nicaragua,1998,1
+Nicaragua,1999,1
+Nicaragua,2000,1
+Nicaragua,2001,1
+Nicaragua,2002,1
+Nicaragua,2003,1
+Nicaragua,2004,1
+Nicaragua,2005,1
+Nicaragua,2006,1
+Nicaragua,2007,1
+Nicaragua,2008,1
+Nicaragua,2009,1
+Nicaragua,2010,1
+Nicaragua,2011,1
+Nicaragua,2012,1
+Nicaragua,2013,1
+Nicaragua,2014,1
+Nicaragua,2015,1
+Nicaragua,2016,1
+Nicaragua,2017,1
+Nicaragua,2018,1
+Panama,1990,1
+Panama,1991,1
+Panama,1992,1
+Panama,1993,1
+Panama,1994,1
+Panama,1995,1
+Panama,1996,1
+Panama,1997,1
+Panama,1998,1
+Panama,1999,1
+Panama,2000,1
+Panama,2001,1
+Panama,2002,1
+Panama,2003,1
+Panama,2004,1
+Panama,2005,1
+Panama,2006,1
+Panama,2007,1
+Panama,2008,1
+Panama,2009,1
+Panama,2010,1
+Panama,2011,1
+Panama,2012,1
+Panama,2013,1
+Panama,2014,1
+Panama,2015,1
+Panama,2016,1
+Panama,2017,1
+Panama,2018,1
+Paraguay,1990,1
+Paraguay,1991,1
+Paraguay,1992,1
+Paraguay,1993,1
+Paraguay,1994,1
+Paraguay,1995,1
+Paraguay,1996,1
+Paraguay,1997,1
+Paraguay,1998,1
+Paraguay,1999,1
+Paraguay,2000,1
+Paraguay,2001,1
+Paraguay,2002,1
+Paraguay,2003,1
+Paraguay,2004,1
+Paraguay,2005,1
+Paraguay,2006,1
+Paraguay,2007,1
+Paraguay,2008,1
+Paraguay,2009,1
+Paraguay,2010,1
+Paraguay,2011,1
+Paraguay,2012,1
+Paraguay,2013,1
+Paraguay,2014,1
+Paraguay,2015,1
+Paraguay,2016,1
+Paraguay,2017,1
+Paraguay,2018,1
+Peru,1990,1
+Peru,1991,1
+Peru,1992,1
+Peru,1993,1
+Peru,1994,1
+Peru,1995,1
+Peru,1996,1
+Peru,1997,1
+Peru,1998,1
+Peru,1999,1
+Peru,2000,1
+Peru,2001,1
+Peru,2002,1
+Peru,2003,1
+Peru,2004,1
+Peru,2005,1
+Peru,2006,1
+Peru,2007,1
+Peru,2008,1
+Peru,2009,1
+Peru,2010,1
+Peru,2011,1
+Peru,2012,1
+Peru,2013,1
+Peru,2014,1
+Peru,2015,1
+Peru,2016,1
+Peru,2017,1
+Peru,2018,1
+Uruguay,1990,1
+Uruguay,1991,1
+Uruguay,1992,1
+Uruguay,1993,1
+Uruguay,1994,1
+Uruguay,1995,1
+Uruguay,1996,1
+Uruguay,1997,1
+Uruguay,1998,1
+Uruguay,1999,1
+Uruguay,2000,1
+Uruguay,2001,1
+Uruguay,2002,1
+Uruguay,2003,1
+Uruguay,2004,1
+Uruguay,2005,1
+Uruguay,2006,1
+Uruguay,2007,1
+Uruguay,2008,1
+Uruguay,2009,1
+Uruguay,2010,1
+Uruguay,2011,1
+Uruguay,2012,1
+Uruguay,2013,1
+Uruguay,2014,1
+Uruguay,2015,1
+Uruguay,2016,1
+Uruguay,2017,1
+Uruguay,2018,1
+Venezuela,1990,1
+Venezuela,1991,1
+Venezuela,1992,1
+Venezuela,1993,1
+Venezuela,1994,1
+Venezuela,1995,1
+Venezuela,1996,1
+Venezuela,1997,1
+Venezuela,1998,1
+Venezuela,1999,1
+Venezuela,2000,1
+Venezuela,2001,1
+Venezuela,2002,1
+Venezuela,2003,1
+Venezuela,2004,1
+Venezuela,2005,1
+Venezuela,2006,1
+Venezuela,2007,1
+Venezuela,2008,1
+Venezuela,2009,1
+Venezuela,2010,1
+Venezuela,2011,1
+Venezuela,2012,1
+Venezuela,2013,1
+Venezuela,2014,1
+Venezuela,2015,1
+Venezuela,2016,1
+Venezuela,2017,1
+Venezuela,2018,1
+Suriname,1990,0
+Suriname,1991,0
+Suriname,1992,0
+Suriname,1993,0
+Suriname,1994,0
+Suriname,1995,0
+Suriname,1996,0
+Suriname,1997,0
+Suriname,1998,0
+Suriname,1999,0
+Suriname,2000,0
+Suriname,2001,0
+Suriname,2002,0
+Suriname,2003,0
+Suriname,2004,0
+Suriname,2005,0
+Suriname,2006,0
+Suriname,2007,0
+Suriname,2008,0
+Suriname,2009,0
+Suriname,2010,0
+Suriname,2011,0
+Suriname,2012,0
+Suriname,2013,0
+Suriname,2014,0
+Suriname,2015,0
+Suriname,2016,0
+Suriname,2017,0
+Suriname,2018,0
+Guyana,1990,0
+Guyana,1991,0
+Guyana,1992,0
+Guyana,1993,0
+Guyana,1994,0
+Guyana,1995,0
+Guyana,1996,0
+Guyana,1997,0
+Guyana,1998,0
+Guyana,1999,0
+Guyana,2000,0
+Guyana,2001,0
+Guyana,2002,0
+Guyana,2003,0
+Guyana,2004,0
+Guyana,2005,0
+Guyana,2006,0
+Guyana,2007,0
+Guyana,2008,0
+Guyana,2009,0
+Guyana,2010,0
+Guyana,2011,0
+Guyana,2012,0
+Guyana,2013,0
+Guyana,2014,0
+Guyana,2015,0
+Guyana,2016,0
+Guyana,2017,0
+Guyana,2018,0
+Belize,1990,0
+Belize,1991,0
+Belize,1992,0
+Belize,1993,0
+Belize,1994,0
+Belize,1995,0
+Belize,1996,0
+Belize,1997,0
+Belize,1998,0
+Belize,1999,0
+Belize,2000,0
+Belize,2001,0
+Belize,2002,0
+Belize,2003,0
+Belize,2004,0
+Belize,2005,0
+Belize,2006,0
+Belize,2007,0
+Belize,2008,0
+Belize,2009,0
+Belize,2010,0
+Belize,2011,0
+Belize,2012,0
+Belize,2013,0
+Belize,2014,0
+Belize,2015,0
+Belize,2016,0
+Belize,2017,0
+Belize,2018,0
+Haiti,1990,0
+Haiti,1991,0
+Haiti,1992,0
+Haiti,1993,0
+Haiti,1994,0
+Haiti,1995,0
+Haiti,1996,0
+Haiti,1997,0
+Haiti,1998,0
+Haiti,1999,0
+Haiti,2000,0
+Haiti,2001,0
+Haiti,2002,0
+Haiti,2003,0
+Haiti,2004,0
+Haiti,2005,0
+Haiti,2006,0
+Haiti,2007,0
+Haiti,2008,0
+Haiti,2009,0
+Haiti,2010,0
+Haiti,2011,0
+Haiti,2012,0
+Haiti,2013,0
+Haiti,2014,0
+Haiti,2015,0
+Haiti,2016,0
+Haiti,2017,0
+Haiti,2018,0
