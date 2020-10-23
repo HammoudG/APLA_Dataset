@@ -2,6 +2,6 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  APLA_Paper: APLA_Paper.html
-last_built: 2020-10-12T20:27Z
+  APLA_Replication_Code: APLA_Replication_Code.html
+last_built: 2020-10-23T15:21Z
 

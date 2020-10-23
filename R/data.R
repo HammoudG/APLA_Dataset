@@ -578,6 +578,20 @@
 "Data_APLA_1"
 
 
+#' @title DATASET_TITLE
+#' @description DATASET_DESCRIPTION
+#' @format A data frame with 580 rows and 5 variables:
+#' \describe{
+#'   \item{\code{Country}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Year}}{integer COLUMN_DESCRIPTION}
+#'   \item{\code{RefugeeAndLikeSit}}{integer COLUMN_DESCRIPTION}
+#'   \item{\code{TotalPop}}{integer COLUMN_DESCRIPTION}
+#'   \item{\code{RefAsPerc}}{double COLUMN_DESCRIPTION}
+#'}
+#' @source \url{http://somewhere.important.com/}
+"Data_Refugees_UNHCR"
+
+
 #' @title APLA_Map
 #' @description APLA_Map is slightly modified versions of the dataset Data_APLA,
 #'  which allows to better  map certain variables.

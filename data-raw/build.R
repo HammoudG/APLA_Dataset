@@ -26,6 +26,10 @@ library(readxl)
 library(readr)
 
 
+Data_Refugees_UNHCR <- read.csv("~/R-projects/APLA_DatasetHammoud/data-raw/Data_Refugees_UNHCR.csv")
+save(Data_Refugees_UNHCR, file =  "data/Data_Refugees_UNHCR.RData")
+sinew::makeOxygen(Data_Refugees_UNHCR, add_fields = "source")
+
 APLA_Database <- read_excel("data-raw/APLA Database.xlsx")
 save(APLA_Database, file =  "data/APLA_Database.RData")
 sinew::makeOxygen(APLA_Database, add_fields = "source")
