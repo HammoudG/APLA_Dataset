@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "APLA_Replication_Code"
 author: "Omar HG"
@@ -305,3 +306,312 @@ tm_shape(Map_APLA_Data) + tm_borders("black", lwd= .5) +
   tm_scale_bar(width = 0.22, position = c(0.65, 0.08)) 
 ```
 
+=======
+---
+title: "APLA_Replication_Code"
+author: "Omar HG"
+date: "27/06/2020"
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+    toc_depth: 3
+vignette: >
+  %\VignetteIndexEntry{APLA Paper}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+## Upload Packages and Data
+```{r, Upload Packages}
+
+# Upload Packages for Data analysis and Map
+library("dplyr")
+library("ggplot2")
+theme_set(theme_bw())
+library("sf")
+library("tmap")
+library("rnaturalearth")
+library("rnaturalearthdata")
+library("tidyr")
+library("stringr")  # To do text analysis 
+
+# For color
+library("RColorBrewer")
+library("viridis")
+library("ggrepel") # might be useful later
+
+# Plot all titles in ggplot2 centered
+theme_update(plot.title = element_text(hjust = 0.5))
+
+```
+
+```{r, Upload Data}
+# Set Working Directory
+#setwd("C:/Users/omarh/Desktop/")
+
+# Upload APLA Database
+APLA<- APLA::APLA_Database 
+
+# Upload Data for Refugee Numbers only
+APLA_Data_1<- APLA::Data_Refugees_UNHCR         # Data APLA  
+
+# Upload Data to Map All Countries Latin America
+APLA_Map<- APLA::APLA_Map                      # Data APLA for Mapping 
+
+```
+
+## Calculate Regulatory Complexity and Liberalisation
+```{r, Calculate Regulatory Complexity}
+
+#APLA<- read.csv("APLA_Database.csv")
+#summary(APLA)
+
+# Transform as Tibble
+APLA_T <- as_tibble(APLA)
+#APLA_T
+
+# Filter out columns on international agreements
+APLA_T1<- APLA_T %>% select(1,2, 35:262)
+
+# Only Questions of Liberalisation and Comments included
+APLA_T2<- APLA_T1 %>% select(1,2, ends_with(c("2_1","3_1_1")))
+
+# Select only commentary section to calculate number "Art" to calculate Regulatory Complexity
+APLA_T3<- APLA_T2 %>%
+  select(1,2, ends_with("3_1_1"))
+
+# Delete of first row
+APLA_T3= APLA_T3[-1,]
+
+# Pivot Table for data manipulation
+APLA_T_L <- pivot_longer(APLA_T3, cols = colnames(APLA_T3)[3:length(colnames(APLA_T3))],
+                        names_to = "Question", values_to = "Comment")
+
+# Transform variable from factor to string
+APLA_T_L$Comment<- as.character(APLA_T_L$Comment)
+
+# Value 1 if "Art" present "0" otherwise
+APLA_T_L1<- APLA_T_L %>%
+  mutate(Included= ifelse(grepl("Art", APLA_T_L$Comment), 1,0))
+
+# Aggregate values of Included per Country, Year, and Question
+APLA_T_L2<- APLA_T_L1 %>%
+  group_by(Q1,Q2) %>%
+  summarise(Frequency= sum(Included))
+
+# Calculate Percentage by looking at number of "Included" per Country/Year as a % of total number of indicators = 57
+APLA_T_L3<- APLA_T_L2 %>%
+    mutate(Total=57) %>%
+    mutate(Regulatory_Complexity= Frequency/Total*100) 
+
+# Round Regulatory Complexity
+APLA_T_L3$Regulatory_Complexity<- round(APLA_T_L3$Regulatory_Complexity)
+
+# Rename Country and Year, and Year transformed in numeric
+colnames(APLA_T_L3)[1] <- "Country"
+colnames(APLA_T_L3)[2] <- "Year"
+APLA_T_L3$Year<- as.numeric(as.character(APLA_T_L3$Year))
+```
+
+```{r, Calculate Liberalisation Variable}
+
+# Run Regulatory Complexity Code First
+
+# Only Questions of Liberalisation and Comments included
+APLA_T4<- APLA_T1 %>% select(1,2, ends_with(c("2_1")))
+
+# Delete of first row
+APLA_T4= APLA_T4[-1,]
+
+# Pivot Table for data manipulation
+APLA_T_L4 <- pivot_longer(APLA_T4, cols = colnames(APLA_T4)[3:length(colnames(APLA_T4))],
+                        names_to = "Question", values_to = "Liberalisation_Score")
+
+# Mutate Liberalisation Score into numeric
+APLA_T_L4$Liberalisation_Score<- as.numeric(as.character(APLA_T_L4$Liberalisation_Score, na.rm= TRUE))
+APLA_T_L4$Question<- as.factor(APLA_T_L4$Question)
+
+APLA_T_L4[complete.cases(APLA_T_L4),]
+
+# Aggregate values of Included per Country, Year, and Question
+APLA_T_L5<- APLA_T_L4 %>%
+  na.omit() %>%
+  group_by(Q1,Q2) %>%
+  summarise(Liberal_Policies= sum(Liberalisation_Score == 0), Restrictive_Policies= sum(Liberalisation_Score == 1)) %>%
+  mutate(Sum_Both = Liberal_Policies + Restrictive_Policies) %>%
+  mutate(Liberalisation= Liberal_Policies/ Sum_Both)
+  
+# Round Liberalisation
+APLA_T_L5$Liberalisation<- round(APLA_T_L5$Liberalisation, digits = 2)
+
+# Take only values where Total_Both => 9
+APLA_T_L6<- APLA_T_L5[APLA_T_L5$Sum_Both >= 9, ]
+
+# Rename Country and Year, and Year transformed in numeric
+colnames(APLA_T_L6)[1] <- "Country"
+colnames(APLA_T_L6)[2] <- "Year"
+APLA_T_L6$Year<- as.numeric(as.character(APLA_T_L6$Year))
+
+
+```
+
+## Plot Number of Refugees in Latin America, Regulatory Complexity and Liberalisation over Time
+```{r, Refugees in LA}
+# Check and change class variable refugees
+#class(APLA_Data_1$RefugeeAndLikeSit)
+APLA_Data_1$RefugeeAndLikeSit<- as.numeric(APLA_Data_1$RefugeeAndLikeSit)
+
+# Calculate maximum number of Refugees in each country (not used)
+APLA_Data_1 %>%
+group_by(Country) %>% summarize(m = max(RefugeeAndLikeSit))
+
+# Create new variable All Other Countries
+APLA_Data_Filtered_1<- APLA_Data_1 %>%
+    filter(Country %in% c("Costa Rica","Ecuador","Guatemala","Honduras","Mexico","Venezuela","Rest of Region"))
+
+# PLOT REFUGEE NUMBERS IN LATIN AMERICA
+PLOT<- ggplot(APLA_Data_Filtered_1, aes(Year, RefugeeAndLikeSit, col= Country)) +
+  geom_line()+
+  facet_wrap(~ Country, scales = "free_y")+
+  ggtitle("Refugees and People in Refugee-Like Situation in Latin America")+
+  ylab("Refugee Numbers")+
+  theme(plot.title = element_text("serif", size = "14", hjust = 0.5))+
+  theme_bw()
+
+# PLOT WITH ADJUSTED LABELS
+require(scales)
+PLOT + scale_y_continuous(labels = comma) + 
+    scale_x_continuous(breaks = c(1990, 2000, 2010, 2018))+
+    theme(legend.position = "none")
+```
+
+```{r Regulatory Complexity Over Time}
+ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity)) +
+  geom_jitter(height=0.8, width = 0.7, aes(color="Country-Year"), alpha=0.5, size=2)+
+  scale_colour_manual(name='', values = c("Locally Weighted Regression"= "red","Country-Year"="grey", "Linear Regression Line"= "blue"))+
+  geom_smooth(linetype="dashed", aes(color="Locally Weighted Regression"), se=FALSE)+
+  geom_smooth(method = 'lm', formula = y~x, aes(color="Linear Regression Line"), se=FALSE)+
+  scale_shape(solid=FALSE)+
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2018))+
+  theme_bw()+
+  ggtitle("Regulatory Complexity of Asylum Policies in Latin America")+
+  ylab("Regulatory Complexity")+
+  theme(plot.title = element_text("serif", size = "14", hjust = 0.5))+
+  theme(legend.title = element_blank())+
+  theme(legend.key = element_rect(fill = "white")) + guides(color=guide_legend(override.aes=list(fill=NA))) #+
+  #scale_color_brewer(palette="Dark2")
+
+```
+
+```{r Liberalisation Over Time}
+ggplot(APLA_T_L6, aes(Year, Liberalisation)) +
+  geom_jitter(height=0.3, width = 0.7, aes(color="Country-Year"), alpha=0.5, size=2)+
+  scale_colour_manual(name='', values = c("Locally Weighted Regression"= "red","Country-Year"="grey", "Linear Regression Line"= "blue"))+
+  geom_smooth(linetype="dashed", aes(color="Locally Weighted Regression"), se=FALSE)+
+  geom_smooth(method = 'lm', formula = y~x, aes(color="Linear Regression Line"), se=FALSE)+
+  scale_shape(solid=FALSE)+
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2018))+
+  theme_bw()+
+  ggtitle("Liberalisation of Asylum Policies in Latin America")+
+  ylab("Liberalisation Score")+
+  theme(plot.title = element_text("serif", size = "14", hjust = 0.5))+
+  theme(legend.title = element_blank())+
+  theme(legend.key = element_rect(fill = "white")) + guides(color=guide_legend(override.aes=list(fill=NA))) #+
+  #scale_color_brewer(palette="Dark2")
+```
+
+```{r Plots of Development of Policy Over-Time Across Countries for Paper 1. Regulatory Complexity}
+ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, col= Country)) +
+  geom_line()+
+  facet_wrap(.~ Country, ncol= 5)+
+  theme(legend.position = "none")+  # to remove legend
+  ggtitle("Regulatory Complexity in Asylum Policies across Latin America, 1990-2018") +
+  ylab("Regulatory Complexity")
+ 
+```
+
+```{r Plots of Development of Policy Over-Time Across Countries for Paper 1. Liberalisation}
+ggplot(APLA_T_L6, aes(Year, Liberalisation, col= Country)) +
+  geom_line()+
+  facet_wrap(.~ Country, ncol= 5)+
+  theme(legend.position = "none")+  # to remove legend
+  ggtitle("Liberalisation in Asylum Policies across Latin America, 1990-2018") +
+  ylab("Liberalisation Score")
+ 
+```
+
+## Additional Plots Not included in the Paper
+```{r Plotting Residuals}
+
+Model1<-lm(formula=Regulatory_Complexity~Year, data=APLA_T_L3)
+
+# Second step obtain presdicted and residual values
+Model1$predicted <- predict(Model1)
+Model1$residuals <- residuals(Model1)
+
+# Eight Step  Change legend
+ggplot(Model1, aes(x=Year, y=Regulatory_Complexity))+
+  geom_jitter(width = 0.8, height = 0.2, color="lightgrey")+
+  geom_smooth(method = "lm", se=FALSE, color= "lightgrey")+
+  geom_segment(aes(xend=Year, yend=Model1$predicted), alpha= .2, color="lightgrey")+
+  geom_point(aes(color=abs(Model1$residuals), size=abs(Model1$residuals)))+
+  scale_color_continuous(low="black", high="red")+
+  guides(color=FALSE, size=guide_legend("Size of Residuals"))+
+  geom_point(aes(y=Model1$predicted), shape=1, color="lightgrey")+
+  theme_bw()+
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2018))+
+  ggtitle("Residuals of Regulatory Complexity in Asylum Policies in Latin America")+
+  ylab("Regulatory Complexity")+
+  theme(plot.title = element_text("serif", size = "14", hjust = 0.5))
+```
+
+```{r Regulatory Complexity vs Liberalisation}
+
+# Merge Regulatory_Complexity and Liberalisation
+APLA_Data_Filtered<- APLA_T_L3 %>%
+    left_join(APLA_T_L6, by = c("Country", "Year"))
+
+# Filter low values
+APLA_Data_Filtered<- APLA_Data_Filtered %>%
+    filter(Regulatory_Complexity > 15)
+
+# Plot Relation between Regulatory Complexity and Liberalisation
+ggplot(APLA_Data_Filtered, aes(Regulatory_Complexity, Liberalisation))+
+  geom_jitter(width=0.5, height= 0.5)+
+  geom_smooth()
+```
+
+## Plot Map of Countries Codified using APLA Dataset
+```{r Map of Countries Codified APLA, fig.cap='Source: APLA Database'}
+world <- ne_countries(scale = "medium", returnclass = "sf")   # Map of World
+#class(world)
+
+APLA_Sel<- APLA_Map %>%                                       # Create Database with Selected Years for Plotting
+  filter(Year %in% c("1990", "2000", "2010", "2018"))
+
+# Rename column where names is "name", so that I can merge with my other dataset
+colnames(world)[4] <- "Country"
+
+# VERY IMPORTANT TO MERGE MAP AND DATA 
+Map_APLA_Data<- merge(APLA_Sel, world, by="Country")
+
+# to transform MAP_APLA from data frame into sf and data.frame
+st_geometry(Map_APLA_Data) <- Map_APLA_Data$geometry
+
+
+# Display all countries codified so far + Compass + Scale Bar + labels changed!+ Title. USE THIS
+tm_shape(Map_APLA_Data) + tm_borders("black", lwd= .5) + 
+  tm_layout(title="1990-2018", title.size = 1.5, title.position =c(0.6, "top")) + 
+  tm_polygons("Codified", title="Codified APLA Countries", palette= "Blues", style="fixed", breaks=c(0, 0.1, 1), 
+              labels=c("Not Codified","Codified Countries")) + tm_compass(position = c(0.3, 0.35)) + 
+  tm_scale_bar(width = 0.22, position = c(0.65, 0.08)) 
+```
+
+>>>>>>> 0939008be34f3170a5d71fbc1fbe7379900bd9a3
