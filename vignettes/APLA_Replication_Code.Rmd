@@ -14,12 +14,12 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-	echo = FALSE,
+	echo = TRUE,
 	message = FALSE,
 	warning = FALSE
 )
 ```
-
+## Upload Packages and Data
 ```{r, Upload Packages}
 
 # Upload Packages for Data analysis and Map
@@ -58,13 +58,15 @@ APLA_Map<- APLA::APLA_Map                      # Data APLA for Mapping
 
 ```
 
+## Calculate Regulatory Complexity and Liberalisation
 ```{r, Calculate Regulatory Complexity}
 
 #APLA<- read.csv("APLA_Database.csv")
+#summary(APLA)
 
 # Transform as Tibble
 APLA_T <- as_tibble(APLA)
-APLA_T
+#APLA_T
 
 # Filter out columns on international agreements
 APLA_T1<- APLA_T %>% select(1,2, 35:262)
@@ -151,9 +153,10 @@ APLA_T_L6$Year<- as.numeric(as.character(APLA_T_L6$Year))
 
 ```
 
+## Plot Number of Refugees in Latin America, Regulatory Complexity and Liberalisation over Time
 ```{r, Refugees in LA}
 # Check and change class variable refugees
-class(APLA_Data_1$RefugeeAndLikeSit)
+#class(APLA_Data_1$RefugeeAndLikeSit)
 APLA_Data_1$RefugeeAndLikeSit<- as.numeric(APLA_Data_1$RefugeeAndLikeSit)
 
 # Calculate maximum number of Refugees in each country (not used)
@@ -235,6 +238,7 @@ ggplot(APLA_T_L6, aes(Year, Liberalisation, col= Country)) +
  
 ```
 
+## Additional Plots Not included in the Paper
 ```{r Plotting Residuals}
 
 Model1<-lm(formula=Regulatory_Complexity~Year, data=APLA_T_L3)
@@ -275,7 +279,7 @@ ggplot(APLA_Data_Filtered, aes(Regulatory_Complexity, Liberalisation))+
   geom_smooth()
 ```
 
-MAP
+## Plot Map of Countries Codified using APLA Dataset
 ```{r Map of Countries Codified APLA, fig.cap='Source: APLA Database'}
 world <- ne_countries(scale = "medium", returnclass = "sf")   # Map of World
 #class(world)
