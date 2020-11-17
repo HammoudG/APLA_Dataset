@@ -7,44 +7,13 @@
 \format{
 A data frame with 667 rows and 34 variables:
 \describe{
-  \item{\code{Country}}{character COLUMN_DESCRIPTION}
-  \item{\code{Year}}{integer COLUMN_DESCRIPTION}
-  \item{\code{Art}}{integer COLUMN_DESCRIPTION}
-  \item{\code{Total}}{integer COLUMN_DESCRIPTION}
-  \item{\code{Regulatory_Complexity}}{integer COLUMN_DESCRIPTION}
-  \item{\code{Polity2}}{integer COLUMN_DESCRIPTION}
-  \item{\code{IntMigStock}}{double COLUMN_DESCRIPTION}
-  \item{\code{Left1_Other0}}{integer COLUMN_DESCRIPTION}
-  \item{\code{Liberalisation}}{double COLUMN_DESCRIPTION}
-  \item{\code{MigSpain}}{integer COLUMN_DESCRIPTION}
-  \item{\code{MigUS}}{integer COLUMN_DESCRIPTION}
-  \item{\code{MigSpainUS}}{integer COLUMN_DESCRIPTION}
-  \item{\code{TotalPopinY}}{integer COLUMN_DESCRIPTION}
-  \item{\code{MigSpainUSPerc}}{double COLUMN_DESCRIPTION}
-  \item{\code{GrowthGDPperCap}}{double COLUMN_DESCRIPTION}
-  \item{\code{Trade_Perc_GDP}}{integer COLUMN_DESCRIPTION}
-  \item{\code{RefugeeAndLikeSit}}{integer COLUMN_DESCRIPTION}
-  \item{\code{T}}{integer COLUMN_DESCRIPTION}
-  \item{\code{RefAsPerc}}{double COLUMN_DESCRIPTION}
-  \item{\code{GDPperCapPPP}}{double COLUMN_DESCRIPTION}
-  \item{\code{Lib100}}{integer COLUMN_DESCRIPTION}
-  \item{\code{x}}{double COLUMN_DESCRIPTION}
-  \item{\code{y}}{double COLUMN_DESCRIPTION}
-  \item{\code{CountryID}}{character COLUMN_DESCRIPTION}
-  \item{\code{South_America}}{integer COLUMN_DESCRIPTION}
-  \item{\code{MigSpainUSLog}}{double COLUMN_DESCRIPTION}
-  \item{\code{lag1}}{integer COLUMN_DESCRIPTION}
-  \item{\code{lag2}}{integer COLUMN_DESCRIPTION}
-  \item{\code{X_est_est1}}{integer COLUMN_DESCRIPTION}
-  \item{\code{X_est_est2}}{integer COLUMN_DESCRIPTION}
-  \item{\code{X_est_est3}}{integer COLUMN_DESCRIPTION}
-  \item{\code{X_est_est4}}{integer COLUMN_DESCRIPTION}
-  \item{\code{VDEM_Polyarchy}}{double COLUMN_DESCRIPTION}
-  \item{\code{Codified}}{integer COLUMN_DESCRIPTION}
+  \item{\code{Country}}{Country Codified}
+  \item{\code{Year}}{Year Codified}
+  \item{\code{Codified}}{Integer [0,1] 1 for Inclusion of country into the APLA Dataset, 0 otherwise}
 }
 }
 \source{
-\url{http://somewhere.important.com/}
+\url{https://github.com/HammoudG/APLA_Dataset}
 }
 \usage{
 APLA_Map
