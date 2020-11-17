@@ -3,19 +3,23 @@
 \docType{data}
 \name{Data_Refugees_UNHCR}
 \alias{Data_Refugees_UNHCR}
-\title{DATASET_TITLE}
+\title{Data_Refugees_UNHCR}
 \format{
 A data frame with 580 rows and 5 variables:
 \describe{
-  \item{\code{Country}}{character COLUMN_DESCRIPTION}
-  \item{\code{Year}}{integer COLUMN_DESCRIPTION}
-  \item{\code{RefugeeAndLikeSit}}{integer COLUMN_DESCRIPTION}
-  \item{\code{TotalPop}}{integer COLUMN_DESCRIPTION}
-  \item{\code{RefAsPerc}}{double COLUMN_DESCRIPTION}
+  \item{\code{Country}}{Country Codified}
+  \item{\code{Year}}{Year Codified}
+  \item{\code{RefugeeAndLikeSit}}{Refugees, or people in a refugee like situation}
+  \item{\code{TotalPop}}{Total Population of country}
+  \item{\code{RefAsPerc}}{Refugees as a percentage of Total Population [(RefugeeAndLikeSit/TotalPop)*100]}
 }
 }
 \source{
-\url{http://somewhere.important.com/}
+\url{https://github.com/HammoudG/APLA_Dataset}
+
+\url{https://www.unhcr.org/refugee-statistics/download/?url=R1xq}
+
+\url{https://www.un.org/en/development/desa/categories/statistics.html}
 }
 \usage{
 Data_Refugees_UNHCR
