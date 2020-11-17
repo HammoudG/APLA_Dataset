@@ -36,4 +36,4 @@ sinew::makeOxygen(APLA_Database, add_fields = "source")
 
 APLA_Map <- read.csv("data-raw/Data_APLA_Maps.csv")
 save(APLA_Map, file =  "data/APLA_Map.RData")
-sinew::makeOxygen(APLA_Map, add_fields = "source")
+sinew::makeOxygen(APLA_Map, add_fields = "source")=
