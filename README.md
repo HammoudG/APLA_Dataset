@@ -6,6 +6,7 @@ The APLA_Paper in the vignette includes the replication code for all the graphs 
 
 
 APLA Database.csv is the original APLA Dataset.  
+
 APLA_Dataset contains the whole data codified using the APLA methodology. It include 19 Latin American countries, using 65 indicators for a 29-years period. 57 of those indicator refer to national legislation, and 8 to the ratification of relevant international agreements. 
 
 Data_APLA_Maps is a slightly modified versions of the dataset above, which allows to better plot the countries in the Latin American region that have been codified. 
