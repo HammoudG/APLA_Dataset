@@ -6,6 +6,7 @@
 # Check that the usethis package is also installed. If not:
 #install.packages("usethis")
 library(roxygen2)
+# For package manager: Manually delete Rd files first, then run code again. Roxygen2 will not overwrite existing package.
 devtools::document()
 
 #install.packages("pkgdown")

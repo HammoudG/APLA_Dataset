@@ -464,3 +464,5 @@ tm_shape(Policy_Maps_Filtered) + tm_borders("black", lwd= .5) + tm_polygons("LA6
 
 
 
+
+
