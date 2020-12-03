@@ -4,7 +4,7 @@
 # This function pulls data from HDX and then tidy them a bit to be ready for R
 
 # Check that the usethis package is also installed. If not:
-#install.packages("usethis")
+install.packages("usethis")
 devtools::document()
 
 #install.packages("pkgdown")
