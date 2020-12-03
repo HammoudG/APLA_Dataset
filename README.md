@@ -12,6 +12,11 @@ library(APLA)
 
 After that, re-start R to see whole package info in the Package section using Rstudio
 
+To load data: 
+get(data("APLA_Database")) // 
+get(data("APLA_Map")) //
+get(data("Data_Refugees_UNHCR"))
+
 # APLA_Dataset
 
 Data for the replication of the paper The Asylum Policies in Latin America (APLA) Database: Findings from an Expanded Methodology to Study Refugee Policies in Latin America, 1990-2018, currently under review in "International Migration Review".
