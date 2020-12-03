@@ -1,5 +1,5 @@
 ---
-title: "APLA_Replication_Code"
+title: "APLA Paper"
 author: "Omar HG"
 date: "27/06/2020"
 output: 
@@ -32,6 +32,7 @@ library("rnaturalearth")
 library("rnaturalearthdata")
 library("tidyr")
 library("stringr")  # To do text analysis 
+library(rgeos)
 
 # For color
 library("RColorBrewer")

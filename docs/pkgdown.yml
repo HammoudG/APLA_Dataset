@@ -1,17 +1,8 @@
-<<<<<<< HEAD
-pandoc: 2.9.2.1
+pandoc: 2.11.1.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   APLA_Replication_Code: APLA_Replication_Code.html
-last_built: 2020-11-11T16:03Z
+  APLA_Replication_Code_Presentation: APLA_Replication_Code_Presentation.html
+last_built: 2020-12-03T15:53Z
 
-=======
-pandoc: 2.9.2.1
-pkgdown: 1.6.1
-pkgdown_sha: ~
-articles:
-  APLA_Replication_Code: APLA_Replication_Code.html
-last_built: 2020-11-11T16:03Z
-
->>>>>>> 0939008be34f3170a5d71fbc1fbe7379900bd9a3

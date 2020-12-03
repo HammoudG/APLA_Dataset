@@ -5,6 +5,7 @@
 
 # Check that the usethis package is also installed. If not:
 #install.packages("usethis")
+library(roxygen2)
 devtools::document()
 
 #install.packages("pkgdown")

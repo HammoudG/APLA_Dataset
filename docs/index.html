@@ -57,7 +57,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/APLA_Replication_Code.html">APLA_Replication_Code</a>
+      <a href="articles/APLA_Replication_Code.html">APLA Paper</a>
+    </li>
+    <li>
+      <a href="articles/APLA_Replication_Code_Presentation.html">APLA Database</a>
     </li>
   </ul>
 </li>
@@ -74,16 +77,25 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="apla_dataset" class="section level1">
+
+<div id="instructions-to-install-apla-package" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#apla_dataset" class="anchor"></a>APLA_Dataset</h1></div>
-<p>Data for the replication of the paper The Asylum Policies in Latin America (APLA) Database: Findings from an Expanded Methodology to Study Refugee Policies in Latin America, 1990-2018</p>
-<p>The APLA_Paper in the vignette includes the replication code for all the graphs and charts of the paper.</p>
-<p>Data_APLA contains data that includes APLA’s regulatory complexity and liberalisation scores, as well as a number of relevant variables that are used in further research.</p>
-<p>Data_APLA_1 and Data_APLA_Maps are slightly modified versions of the dataset above, which allows to better plot, map or chart certain variables.</p>
-<p>APLA Database.xlx is the original APLA Dataset. APLA Liberalisation and APLA Regulatory Complexity include the files where the calculation of the two dependent variables was conducted.</p>
+<a href="#instructions-to-install-apla-package" class="anchor"></a>Instructions to install APLA Package</h1></div>
+<p>library(devtools)</p>
+<p>library(usethis)</p>
+<p>install_github(“hammoudg/apla_dataset”)</p>
+</div>
+<div id="apla_dataset" class="section level1">
+<h1 class="hasAnchor">
+<a href="#apla_dataset" class="anchor"></a>APLA_Dataset</h1>
+<p>Data for the replication of the paper The Asylum Policies in Latin America (APLA) Database: Findings from an Expanded Methodology to Study Refugee Policies in Latin America, 1990-2018, currently under review in “International Migration Review”.</p>
+<p>The APLA_Paper in the vignette includes the replication code for all the graphs and charts of the paper, as well as the calculation of the main aggregate variables of interest: regulatory complexity and liberalisation.</p>
+<p>APLA Database.csv is the original APLA Dataset.</p>
+<p>APLA_Dataset contains the whole data codified using the APLA methodology. It include 19 Latin American countries, using 65 indicators for a 29-years period. 57 of those indicator refer to national legislation, and 8 to the ratification of relevant international agreements.</p>
+<p>Data_APLA_Maps is a slightly modified versions of the dataset above, which allows to better plot the countries in the Latin American region that have been codified. Data_Refugees_UNHCR includes number on ‘refugees and people in a refugee-like situation’ as identified by the UNHCR, and data on the ‘total population’ of each country in the specific year, as calculated by UNDESA.</p>
 <p>Annex I includes the questionnaire used to codify APLA. Annex II includes the Codebook with the Rules for the codification. Annex III presents a series of maps with the major policy measures adopted over time in each country.</p>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
