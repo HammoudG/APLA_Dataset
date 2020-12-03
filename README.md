@@ -1,7 +1,9 @@
 # Instructions to install APLA Package
 
 library(devtools)
+
 library(usethis)
+
 install_github("hammoudg/apla_dataset")
 
 # APLA_Dataset
