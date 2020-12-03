@@ -15,10 +15,6 @@ devtools::document()
 #library("pkgdown")
 pkgdown::build_site()
 
-#library(devtools)
-#library(usethis)
-#install_github("hammoudg/apla_dataset")
-
 ## a few other exploration of the package
 devtools::release()
 # devtools::build_win(version = c("R-release", "R-devel"))
