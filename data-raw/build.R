@@ -9,6 +9,7 @@ devtools::document()
 
 #install.packages("pkgdown")
 
+#usethis::use_pkgdown()
 #library("pkgdown")
 pkgdown::build_site()
 
