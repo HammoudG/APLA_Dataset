@@ -1,3 +1,5 @@
+# README
+
 # Instructions to install APLA Package
 
 library(devtools)
@@ -8,7 +10,7 @@ install_github("hammoudg/apla_dataset")
 
 library(APLA)
 
-After that, re-start R to see whole package info in the Package secion using Rstudio
+After that, re-start R to see whole package info in the Package section using Rstudio
 
 # APLA_Dataset
 
