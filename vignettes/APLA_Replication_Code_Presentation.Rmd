@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 
 
-## Upload Packages and Data
+## Upload Packages and Data for Presentation 
 ```{r, Upload Packages}
 
 # Upload Packages for Data analysis and Map
@@ -150,7 +150,7 @@ APLA_T_L6$Year<- as.numeric(as.character(APLA_T_L6$Year))
 
 ```
 
-## Plot Number of Refugees in Latin America, Regulatory Complexity and Liberalisation over Time
+## Plot Number of Refugees in Latin America, Regulatory Complexity and Liberalisation over Time for Presentation
 ```{r, Refugees in LA}
 # Check and change class variable refugees
 #class(APLA_Data_1$RefugeeAndLikeSit)
@@ -337,7 +337,7 @@ tm_shape(Policy_Maps_Filtered) + tm_borders("black", lwd= .5) + tm_polygons("LA1
 tm_shape(Policy_Maps_Filtered) + tm_borders("black", lwd= .5) + tm_polygons("LA53.1_1", title="UNHCR representation in National Refugee Council", palette= "Blues", style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("Not Included","Included in Legislation")) + tm_facets(by = "Year")
 ```
 
-##  Map  Is UNHCR informed if negative last instance decision
+## Map  Is UNHCR informed if negative last instance decision
 ```{r, Map  Is UNHCR informed if negative last instance decision}
 
 # Is UNHCR informed if negative last instance decision
