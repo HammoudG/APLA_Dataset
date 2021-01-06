@@ -1,7 +1,7 @@
 ---
 title: "APLA Paper"
-author: "Omar HG"
-date: "27/06/2020"
+author: "Omar Hammoud Gallego"
+date: "06/01/2021"
 output: 
   rmarkdown::html_vignette:
     toc: yes
@@ -45,9 +45,6 @@ theme_update(plot.title = element_text(hjust = 0.5))
 ```
 
 ```{r, Upload Data}
-# Set Working Directory
-#setwd("C:/Users/omarh/Desktop/")
-
 # Upload APLA Database
 APLA<- APLA::APLA_Database 
 
@@ -191,7 +188,7 @@ ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity)) +
   geom_smooth(linetype="dashed", aes(color="Locally Weighted Regression"), se=FALSE)+
   geom_smooth(method = 'lm', formula = y~x, aes(color="Linear Regression Line"), se=FALSE)+
   scale_shape(solid=FALSE)+
-  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2018))+
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2020))+
   theme_bw()+
   ggtitle("Regulatory Complexity of Asylum Policies in Latin America")+
   ylab("Regulatory Complexity")+
@@ -209,7 +206,7 @@ ggplot(APLA_T_L6, aes(Year, Liberalisation)) +
   geom_smooth(linetype="dashed", aes(color="Locally Weighted Regression"), se=FALSE)+
   geom_smooth(method = 'lm', formula = y~x, aes(color="Linear Regression Line"), se=FALSE)+
   scale_shape(solid=FALSE)+
-  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2018))+
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2020))+
   theme_bw()+
   ggtitle("Liberalisation of Asylum Policies in Latin America")+
   ylab("Liberalisation Score")+
@@ -224,7 +221,7 @@ ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, col= Country)) +
   geom_line()+
   facet_wrap(.~ Country, ncol= 5)+
   theme(legend.position = "none")+  # to remove legend
-  ggtitle("Regulatory Complexity in Asylum Policies across Latin America, 1990-2018") +
+  ggtitle("Regulatory Complexity in Asylum Policies across Latin America, 1990-2020") +
   ylab("Regulatory Complexity")
  
 ```
@@ -234,7 +231,7 @@ ggplot(APLA_T_L6, aes(Year, Liberalisation, col= Country)) +
   geom_line()+
   facet_wrap(.~ Country, ncol= 5)+
   theme(legend.position = "none")+  # to remove legend
-  ggtitle("Liberalisation in Asylum Policies across Latin America, 1990-2018") +
+  ggtitle("Liberalisation in Asylum Policies across Latin America, 1990-2020") +
   ylab("Liberalisation Score")
  
 ```
@@ -258,7 +255,7 @@ ggplot(Model1, aes(x=Year, y=Regulatory_Complexity))+
   guides(color=FALSE, size=guide_legend("Size of Residuals"))+
   geom_point(aes(y=Model1$predicted), shape=1, color="lightgrey")+
   theme_bw()+
-  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2018))+
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2020))+
   ggtitle("Residuals of Regulatory Complexity in Asylum Policies in Latin America")+
   ylab("Regulatory Complexity")+
   theme(plot.title = element_text("serif", size = "14", hjust = 0.5))
@@ -287,7 +284,7 @@ world <- ne_countries(scale = "medium", returnclass = "sf")   # Map of World
 #class(world)
 
 APLA_Sel<- APLA_Map %>%                                       # Create Database with Selected Years for Plotting
-  filter(Year %in% c("1990", "2000", "2010", "2018"))
+  filter(Year %in% c("1990", "2000", "2010", "2020"))
 
 # Rename column where names is "name", so that I can merge with my other dataset
 colnames(world)[4] <- "Country"
@@ -301,13 +298,13 @@ st_geometry(Map_APLA_Data) <- Map_APLA_Data$geometry
 
 # Display all countries codified so far + Compass + Scale Bar + labels changed!+ Title. USE THIS
 tm_shape(Map_APLA_Data) + tm_borders("black", lwd= .5) + 
-  tm_layout(title="1990-2018", title.size = 1.5, title.position =c(0.6, "top")) + 
+  tm_layout(title="1990-2020", title.size = 1.5, title.position =c(0.6, "top")) + 
   tm_polygons("Codified", title="Codified APLA Countries", palette= "Blues", style="fixed", breaks=c(0, 0.1, 1), 
               labels=c("Not Codified","Codified Countries")) + tm_compass(position = c(0.3, 0.35)) + 
   tm_scale_bar(width = 0.22, position = c(0.65, 0.08)) 
 ```
 
-## Maps of Policy Measures Included in Legislation 1990 - 2018
+## Maps of Policy Measures Included in Legislation 1990 - 2020
 
 ```{r, Prepare data for plotting policy measures}
 world <- ne_countries(scale = "medium", returnclass = "sf")
@@ -330,7 +327,7 @@ library(RColorBrewer)
 
 # Create Database with Selected Years for Plotting
 Policy_Maps_Filtered<- Policy_Maps %>%                                       
-  filter(Year %in% c("1990", "2000", "2010", "2018"))
+  filter(Year %in% c("1990", "2000", "2010", "2020"))
 
 
 
