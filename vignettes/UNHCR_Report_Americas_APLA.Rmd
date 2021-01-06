@@ -2,17 +2,18 @@
 title: "Report Americas UNHCR"
 author: "Omar HG"
 date: "06/01/2021"
-output: html_document
+bookdown::html_document2: default
 ---
 
-```{r setup, include=TRUE}
+```{r setup, include=TRUE, echo = FALSE}
 knitr::opts_chunk$set(
-	echo = TRUE,
+	echo = FALSE,
 	message = FALSE,
 	warning = FALSE
 )
 ```
-## Upload Packages and Data
+
+
 ```{r, Upload Packages}
 
 # Upload Packages for Data analysis and Map
@@ -27,6 +28,7 @@ library("tidyr")
 library("stringr")  # To do text analysis 
 library(rgeos)
 
+library("bookdown")
 # For color
 library("RColorBrewer")
 library("viridis")
@@ -49,3 +51,173 @@ APLA_Map<- APLA::APLA_Map                      # Data APLA for Mapping
 
 ```
 
+```{r, Calculate Regulatory Complexity, echo = FALSE}
+
+# Transform as Tibble
+APLA_T <- as_tibble(APLA)
+#APLA_T
+
+# Filter out columns on international agreements
+APLA_T1<- APLA_T %>% select(1,2, 35:262)
+
+# Only Questions of Liberalisation and Comments included
+APLA_T2<- APLA_T1 %>% select(1,2, ends_with(c("2_1","3_1_1")))
+
+# Select only commentary section to calculate number "Art" to calculate Regulatory Complexity
+APLA_T3<- APLA_T2 %>%
+  select(1,2, ends_with("3_1_1"))
+
+# Delete of first row
+APLA_T3= APLA_T3[-1,]
+
+# Pivot Table for data manipulation
+APLA_T_L <- pivot_longer(APLA_T3, cols = colnames(APLA_T3)[3:length(colnames(APLA_T3))],
+                        names_to = "Question", values_to = "Comment")
+
+# Transform variable from factor to string
+APLA_T_L$Comment<- as.character(APLA_T_L$Comment)
+
+# Value 1 if "Art" present "0" otherwise
+APLA_T_L1<- APLA_T_L %>%
+  mutate(Included= ifelse(grepl("Art", APLA_T_L$Comment), 1,0))
+
+# Aggregate values of Included per Country, Year, and Question
+APLA_T_L2<- APLA_T_L1 %>%
+  group_by(Q1,Q2) %>%
+  summarise(Frequency= sum(Included))
+
+# Calculate Percentage by looking at number of "Included" per Country/Year as a % of total number of indicators = 57
+APLA_T_L3<- APLA_T_L2 %>%
+    mutate(Total=57) %>%
+    mutate(Regulatory_Complexity= Frequency/Total*100) 
+
+# Round Regulatory Complexity
+APLA_T_L3$Regulatory_Complexity<- round(APLA_T_L3$Regulatory_Complexity)
+
+# Rename Country and Year, and Year transformed in numeric
+colnames(APLA_T_L3)[1] <- "Country"
+colnames(APLA_T_L3)[2] <- "Year"
+APLA_T_L3$Year<- as.numeric(as.character(APLA_T_L3$Year))
+```
+
+```{r, Calculate Liberalisation Variable, echo = FALSE}
+
+# Run Regulatory Complexity Code First
+
+# Only Questions of Liberalisation and Comments included
+APLA_T4<- APLA_T1 %>% select(1,2, ends_with(c("2_1")))
+
+# Delete of first row
+APLA_T4= APLA_T4[-1,]
+
+# Pivot Table for data manipulation
+APLA_T_L4 <- pivot_longer(APLA_T4, cols = colnames(APLA_T4)[3:length(colnames(APLA_T4))],
+                        names_to = "Question", values_to = "Liberalisation_Score")
+
+# Mutate Liberalisation Score into numeric
+APLA_T_L4$Liberalisation_Score<- as.numeric(as.character(APLA_T_L4$Liberalisation_Score, na.rm= TRUE))
+APLA_T_L4$Question<- as.factor(APLA_T_L4$Question)
+
+APLA_T_L4[complete.cases(APLA_T_L4),]
+
+# Aggregate values of Included per Country, Year, and Question
+APLA_T_L5<- APLA_T_L4 %>%
+  na.omit() %>%
+  group_by(Q1,Q2) %>%
+  summarise(Liberal_Policies= sum(Liberalisation_Score == 0), Restrictive_Policies= sum(Liberalisation_Score == 1)) %>%
+  mutate(Sum_Both = Liberal_Policies + Restrictive_Policies) %>%
+  mutate(Liberalisation= Liberal_Policies/ Sum_Both)
+  
+# Round Liberalisation
+APLA_T_L5$Liberalisation<- round(APLA_T_L5$Liberalisation, digits = 2)
+
+# Take only values where Total_Both => 9
+APLA_T_L6<- APLA_T_L5[APLA_T_L5$Sum_Both >= 9, ]
+
+# Rename Country and Year, and Year transformed in numeric
+colnames(APLA_T_L6)[1] <- "Country"
+colnames(APLA_T_L6)[2] <- "Year"
+APLA_T_L6$Year<- as.numeric(as.character(APLA_T_L6$Year))
+
+
+```
+
+# Plot Map of Countries Codified using APLA Dataset
+
+```{r Map of Countries Codified APLA, fig.cap='Source: APLA Database'}
+world <- ne_countries(scale = "medium", returnclass = "sf")   # Map of World
+#class(world)
+
+APLA_Sel<- APLA_Map %>%                                       # Create Database with Selected Years for Plotting
+  filter(Year %in% c("1990", "2000", "2010", "2020"))
+
+# Rename column where names is "name", so that I can merge with my other dataset
+colnames(world)[4] <- "Country"
+
+# VERY IMPORTANT TO MERGE MAP AND DATA 
+Map_APLA_Data<- merge(APLA_Sel, world, by="Country")
+
+# to transform MAP_APLA from data frame into sf and data.frame
+st_geometry(Map_APLA_Data) <- Map_APLA_Data$geometry
+
+
+# Display all countries codified so far + Compass + Scale Bar + labels changed!+ Title. USE THIS
+tm_shape(Map_APLA_Data) + tm_borders("black", lwd= .5) + 
+  tm_layout(title="1990-2020", title.size = 1.5, title.position =c(0.6, "top")) + 
+  tm_polygons("Codified", title="Codified APLA Countries", palette= "Blues", style="fixed", breaks=c(0, 0.1, 1), 
+              labels=c("Not Codified","Codified Countries")) + tm_compass(position = c(0.3, 0.35)) + 
+  tm_scale_bar(width = 0.22, position = c(0.65, 0.08)) 
+```
+
+
+To provide some context on the legal framework on asylum policies in Latin America, we present the results of a recent codification efforts of the asylum policies of 19 Latin American countries over the last 30 years (see Figure \@ref(fig: Map of Countries Codified APLA).  
+
+As Figure \@ref(fig: Plots of Development of Policy Over-Time Across Countries for Paper 1. Regulatory Complexity) shows, over the last three decades countries across Latin America have reformed or adopted their asylum legislation. 
+
+```{r Plots of Development of Policy Over-Time Across Countries for Paper 1. Regulatory Complexity}
+ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, col= Country)) +
+  geom_line()+
+  facet_wrap(.~ Country, ncol= 5)+
+  theme(legend.position = "none")+  # to remove legend
+  ggtitle("Regulatory Complexity in Asylum Policies across Latin America, 1990-2020") +
+  ylab("Regulatory Complexity")
+ 
+```
+
+
+
+
+
+# Detailed Policy Measures
+
+```{r, Prepare data for plotting policy measures}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+#class(world)
+
+# Rename column where names is "name", so that I can merge with my other dataset
+colnames(APLA)[1] <- "Name"
+colnames(APLA)[2] <- "Year"
+colnames(world)[4] <- "Name"
+  
+# VERY IMPORTANT TO MERGE MAP AND DATA 
+Policy_Maps<- merge(APLA, world, by="Name")
+
+# to transform IMPALA from data frame into sf and data.frame
+st_geometry(Policy_Maps) <- Policy_Maps$geometry
+
+# to add colour to map
+library(RColorBrewer)
+#display.brewer.all()
+
+# Create Database with Selected Years for Plotting
+Policy_Maps_Filtered<- Policy_Maps %>%                                       
+  filter(Year %in% c("1990", "2000", "2010", "2020"))
+
+
+
+```
+
+
+
+
+While the scale and determinants of the on-going Venezuelan displacement crisis have been widely acknowledged to resemble the gravity of a refugee crisis, in few cases countries in the regions have adopted their legal frameworks for the reception of Venezuelan nationals.  
