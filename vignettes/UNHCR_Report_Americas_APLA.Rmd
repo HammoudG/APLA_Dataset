@@ -1,0 +1,51 @@
+---
+title: "Report Americas UNHCR"
+author: "Omar HG"
+date: "06/01/2021"
+output: html_document
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+## Upload Packages and Data
+```{r, Upload Packages}
+
+# Upload Packages for Data analysis and Map
+library("dplyr")
+library("ggplot2")
+theme_set(theme_bw())
+library("sf")
+library("tmap")
+library("rnaturalearth")
+library("rnaturalearthdata")
+library("tidyr")
+library("stringr")  # To do text analysis 
+library(rgeos)
+
+# For color
+library("RColorBrewer")
+library("viridis")
+library("ggrepel") # might be useful later
+
+# Plot all titles in ggplot2 centered
+theme_update(plot.title = element_text(hjust = 0.5))
+
+```
+
+```{r, Upload Data}
+# Upload APLA Database
+APLA<- APLA::APLA_Database 
+
+# Upload Data for Refugee Numbers only
+APLA_Data_1<- APLA::Data_Refugees_UNHCR         # Data APLA  
+
+# Upload Data to Map All Countries Latin America
+APLA_Map<- APLA::APLA_Map                      # Data APLA for Mapping 
+
+```
+
