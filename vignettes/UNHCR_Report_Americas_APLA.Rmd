@@ -42,6 +42,9 @@ theme_update(plot.title = element_text(hjust = 0.5))
 ```
 
 ```{r, Upload Data}
+#devtools::install_github("hammoudg/apla_dataset")
+#library(APLA)
+
 # Upload APLA Database
 APLA<- APLA::APLA_Database 
 
