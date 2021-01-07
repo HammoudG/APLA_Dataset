@@ -405,7 +405,7 @@ tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA17.1_1", t
 tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA23.1_1", title="Right to Family Unity", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
 
 # Ease Recognition Professional/Academic Qualifications LA27
-tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA27.1_1", title="Ease Recognition Profession or Academic Qualification", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA27.1_1", title="Ease Recognition Profession \nor Academic Qualification", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
 
 # ID Mention Refugee Status LA29
 tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA29.1_1", title="ID Mentions Refugee Status", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","ID does not mention Refugee Status","ID can mention Refugee Status")) + tm_facets(by = "Year")
@@ -441,7 +441,7 @@ tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA49.1_1", t
 tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA51.1_1", title="Prohibition to Contact \n Country of Origin", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Not Included","Included in Legislation")) + tm_facets(by = "Year")
 
 # Is UNHCR represented in refugee status decision council LA53
-tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA53.1_1", title="UNHCR representation in National Refugee Council", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA53.1_1", title="UNHCR representation \nin National Refugee Council", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
 
 # Is UNHCR informed if negative last instance decision
 tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA57.1_1", title="UNHCR informed if Negative Decision", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Not Included","Included in Legislation")) + tm_facets(by = "Year")

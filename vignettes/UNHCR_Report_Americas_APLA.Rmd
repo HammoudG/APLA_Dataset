@@ -7,6 +7,10 @@ header-includes:
 - \setlength\parindent{24pt}
 bookdown::html_document2: default
 ---
+<style>
+body {
+text-align: justify}
+</style>
 
 ```{r setup, include=TRUE, echo = FALSE}
 knitr::opts_chunk$set(
@@ -41,7 +45,7 @@ theme_update(plot.title = element_text(hjust = 0.5))
 
 ```
 
-```{r, Upload Data}
+```{r, Upload Data, echo = FALSE}
 #devtools::install_github("hammoudg/apla_dataset")
 #library(APLA)
 
@@ -163,9 +167,9 @@ ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, col= Country)) +
  
 ```
 
-```{r, Prepare data for plotting policy measures}
+```{r, Prepare data for plotting policy measures, echo = FALSE}
 world <- ne_countries(scale = "medium", returnclass = "sf")
-class(world)
+#class(world)
 
 # Rename column where names is "name", so that I can merge with my other dataset
 colnames(APLA)[1] <- "Name"
@@ -193,7 +197,9 @@ library(RColorBrewer)
 Within this context, some specific policy measures adopted across the region are noteworthy. 
 First of all, most countries across the region have included into their legislation the so-called 'Cartagena Refugee Definition', which extends the 1951 Refugee Definition from the Geneva Convention, to include 
 
-> 'persons who have fled their country because their lives, security or freedom have been threatened by generalized violence, foreign aggression, internal conflicts, massive violation of human rights or other circumstances which have seriously disturbed public order'
+> 'persons who have fled their country because their lives, security or freedom have been threatened by generalized violence, foreign aggression, internal conflicts, massive violation of human rights or other circumstances which have seriously disturbed public order'.
+
+As of 2020, Cuba, the Dominican Republic, Panama and Venezuela were the only countries that did had not included the Cartagena Refugee Definition in their legislative frameworks.
 
 ```{r, cartagena Refugee Definition}
 # Cartagena Refugee Definition LA7
@@ -201,7 +207,44 @@ tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA7.1_1", ti
 ```
 
 
+# Innovative Policy Measures 
 
-HOWEVER 
+As of 2020 the regional framework for the protection of refugees in Latin America was widely developed, and a series of regional standards have been widely incorporated into the national legislation of most countries in the region. To name but a few, special procedures for the protection of children were introduced, as well as the right to submit the asylum application through the UNHCR, as shown below.
 
-While the scale and determinants of the on-going Venezuelan displacement crisis have been widely acknowledged to resemble the gravity of a refugee crisis, in few cases countries in the regions have adopted their legal frameworks for the reception of Venezuelan nationals.  
+```{r, children and UNHCR}
+# Special Procedures for Children Asylum Seekers q190
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q190.1_1", title="Special Procedures for \n Children Asylum Seekers", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Application can be submitted through UNHCR LA33
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA33.1_1", title="Application can be \n submitted through UNHCR", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+```
+
+In addition to these, fundamental rights, such as the right to work have been widely adopted, with few exceptions. In some countries, the inclusion of gender as a possible cause of persecution, and the explicit mention that the lack of documents should not represent an obstacle to any individual requesting asylum represent a clear milestone for the protection of refugees in the region. 
+
+```{r, right to work documents and gender}
+# Right to Work q54
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q54.1_1", title="Right to Work", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Lack Documentation no Obstacle to Asylum Request Submission LA39
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA39.1_1", title="Lack Documentation not an \n Obstacle to the Submission \n of an Asylum Request", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Refugee Status due to Persecution based on Gender LA65 
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA65.1_1", title="Persecution due to \nGender Recognised", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+```
+
+
+# Challenges Ahead
+
+Despite the widely recognized advances in the legislation on asylum across the region, the recent Venezuelan displacement has laid bare how underdeveloped the actual implementation mechanisms are, and how little resources have been allocated to implement such policies. It is for that reason that - overwhelmed by the growing number of Venezuelan nationals - most countries receiving Venezuelan nationals have instead opted to develop or use 'ad hoc' migratory permits to process these entrants, even if many Venezuelan nationals might have otherwise qualified for asylum. 
+
+```{r, special procedures and subsidiary}
+# Special Procedures for Mass Influx of Refugees LA11
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA11.1_1", title="Special Procedures to Deal with \n Mass Influx of Refugees", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Subsidiary Status Q278
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q278.1_1", title="Subsidiary Protection Status \n or Ad Hoc Legal Status", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included into Legislation")) + tm_facets(by = "Year")
+```
+
+As of January 2021, only Brazil and Mexico had applied their legislation to give recognition to refugees according to the Cartagena Refugee Definition, while Peru had accepted asylum requests although very few have been processed.
+
+
