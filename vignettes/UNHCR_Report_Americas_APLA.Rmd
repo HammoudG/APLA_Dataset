@@ -1,7 +1,10 @@
 ---
 title: "Report Americas UNHCR"
-author: "Omar HG"
-date: "06/01/2021"
+author: "Omar Hammoud Gallego"
+date: "07/01/2021"
+header-includes:
+- \usepackage{setspace}\doublespacing
+- \setlength\parindent{24pt}
 bookdown::html_document2: default
 ---
 
@@ -12,7 +15,6 @@ knitr::opts_chunk$set(
 	warning = FALSE
 )
 ```
-
 
 ```{r, Upload Packages}
 
@@ -142,37 +144,11 @@ APLA_T_L6$Year<- as.numeric(as.character(APLA_T_L6$Year))
 
 ```
 
-# Plot Map of Countries Codified using APLA Dataset
+# Introduction
 
-```{r Map of Countries Codified APLA, fig.cap='Source: APLA Database'}
-world <- ne_countries(scale = "medium", returnclass = "sf")   # Map of World
-#class(world)
+To provide some context on the legal framework on asylum policies in Latin America, here we present the results of a recent analysis of the asylum policies of 19 Latin American countries over the last 30 years. Following the 1984 Cartagena Refugee Declaration, the UNHCR together with governments from the region reconvened in 1994 in San Jose, Costa Rica, in 2004 in Mexico, and 2014 in Brazil to set out a series of declarations and action plans that served as a basis for the development of a regional framework for the protection of refugees.  
 
-APLA_Sel<- APLA_Map %>%                                       # Create Database with Selected Years for Plotting
-  filter(Year %in% c("1990", "2000", "2010", "2020"))
-
-# Rename column where names is "name", so that I can merge with my other dataset
-colnames(world)[4] <- "Country"
-
-# VERY IMPORTANT TO MERGE MAP AND DATA 
-Map_APLA_Data<- merge(APLA_Sel, world, by="Country")
-
-# to transform MAP_APLA from data frame into sf and data.frame
-st_geometry(Map_APLA_Data) <- Map_APLA_Data$geometry
-
-
-# Display all countries codified so far + Compass + Scale Bar + labels changed!+ Title. USE THIS
-tm_shape(Map_APLA_Data) + tm_borders("black", lwd= .5) + 
-  tm_layout(title="1990-2020", title.size = 1.5, title.position =c(0.6, "top")) + 
-  tm_polygons("Codified", title="Codified APLA Countries", palette= "Blues", style="fixed", breaks=c(0, 0.1, 1), 
-              labels=c("Not Codified","Codified Countries")) + tm_compass(position = c(0.3, 0.35)) + 
-  tm_scale_bar(width = 0.22, position = c(0.65, 0.08)) 
-```
-
-
-To provide some context on the legal framework on asylum policies in Latin America, we present the results of a recent codification efforts of the asylum policies of 19 Latin American countries over the last 30 years (see Figure \@ref(fig: Map of Countries Codified APLA).  
-
-As Figure \@ref(fig: Plots of Development of Policy Over-Time Across Countries for Paper 1. Regulatory Complexity) shows, over the last three decades countries across Latin America have reformed or adopted their asylum legislation. 
+The results of these efforts are visible in the Figure below. Over the last three decades countries across Latin America have either adopted for the first time, or reformed, their asylum legislation. This has put the region at the forefront in the adoption of mostly progressive legal frameworks for the protection of asylum seekers and refugees. 
 
 ```{r Plots of Development of Policy Over-Time Across Countries for Paper 1. Regulatory Complexity}
 ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, col= Country)) +
@@ -184,23 +160,24 @@ ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, col= Country)) +
  
 ```
 
-
-
-
-
-# Detailed Policy Measures
-
 ```{r, Prepare data for plotting policy measures}
 world <- ne_countries(scale = "medium", returnclass = "sf")
-#class(world)
+class(world)
 
 # Rename column where names is "name", so that I can merge with my other dataset
 colnames(APLA)[1] <- "Name"
 colnames(APLA)[2] <- "Year"
 colnames(world)[4] <- "Name"
-  
+
+# Create Database with Selected Years for Plotting
+Filtered_APLA<- APLA %>%                                       
+  filter(Year %in% c("1990", "2000", "2010", "2020"))
+
+# To Remove level from dropped rows!! 
+Filtered_APLA<- droplevels(Filtered_APLA, drop=TRUE)
+
 # VERY IMPORTANT TO MERGE MAP AND DATA 
-Policy_Maps<- merge(APLA, world, by="Name")
+Policy_Maps<- merge(Filtered_APLA, world, by="Name")
 
 # to transform IMPALA from data frame into sf and data.frame
 st_geometry(Policy_Maps) <- Policy_Maps$geometry
@@ -208,16 +185,20 @@ st_geometry(Policy_Maps) <- Policy_Maps$geometry
 # to add colour to map
 library(RColorBrewer)
 #display.brewer.all()
+```
 
-# Create Database with Selected Years for Plotting
-Policy_Maps_Filtered<- Policy_Maps %>%                                       
-  filter(Year %in% c("1990", "2000", "2010", "2020"))
+Within this context, some specific policy measures adopted across the region are noteworthy. 
+First of all, most countries across the region have included into their legislation the so-called 'Cartagena Refugee Definition', which extends the 1951 Refugee Definition from the Geneva Convention, to include 
 
+> 'persons who have fled their country because their lives, security or freedom have been threatened by generalized violence, foreign aggression, internal conflicts, massive violation of human rights or other circumstances which have seriously disturbed public order'
 
-
+```{r, cartagena Refugee Definition}
+# Cartagena Refugee Definition LA7
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA7.1_1", title="Cartagena Refugee Definition", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 1.0), labels=c("No or Underdeveloped Legislation","Not Incorporated","Cartagena Incorporated")) + tm_facets(by = "Year")
 ```
 
 
 
+HOWEVER 
 
 While the scale and determinants of the on-going Venezuelan displacement crisis have been widely acknowledged to resemble the gravity of a refugee crisis, in few cases countries in the regions have adopted their legal frameworks for the reception of Venezuelan nationals.  
