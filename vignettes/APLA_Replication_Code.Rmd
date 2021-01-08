@@ -199,6 +199,7 @@ ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity)) +
 
 ```
 
+
 ```{r Liberalisation Over Time}
 ggplot(APLA_T_L6, aes(Year, Liberalisation)) +
   geom_jitter(height=0.3, width = 0.7, aes(color="Country-Year"), alpha=0.5, size=2)+
@@ -225,6 +226,26 @@ ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, col= Country)) +
   ylab("Regulatory Complexity")
  
 ```
+
+```{r, Plot Regulatory Complexity Over Time with Subregion, fig.cap='Source: APLA Database.'}
+library(data.table)
+
+APLA_T_L3<- APLA_T_L3 %>% mutate(South_America = if_else(Country %in% c("Argentina", "Bolivia", "Brazil", "Chile", "Colombia","Ecuador", "Paraguay", "Peru", "Uruguay", "Venezuela"), "1", "0"))
+
+######
+
+ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, shape=factor(South_America, labels=c("Rest of Latin America", "South America")), color=factor(South_America, labels=c("Rest of Latin America", "South America")))) +
+  geom_jitter(height=0.8, width = 0.7)+
+  geom_smooth(se=FALSE, aes(color=factor(South_America, labels=c("Rest of Latin America", "South America"))))+
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2020))+
+  scale_color_brewer(palette="Dark2")+
+  ggtitle("Regulatory Complexity, Latin America by Subregion")+
+  ylab("Regulatory Complexity")+
+  theme(plot.title = element_text("serif", size = "14", hjust = 0.5))+
+  labs(color="Subregion", shape="Subregion")
+```
+
+
 
 ```{r Plots of Development of Policy Over-Time Across Countries for Paper 1. Liberalisation}
 ggplot(APLA_T_L6, aes(Year, Liberalisation, col= Country)) +
