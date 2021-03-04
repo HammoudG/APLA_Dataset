@@ -57,7 +57,7 @@ APLA_Map<- APLA::APLA_Map                      # Data APLA for Mapping
 ```
 
 ## Calculate Regulatory Complexity and Liberalisation
-```{r, Calculate Regulatory Complexity}
+```{r, Calculate Regulatory Complexity, results='hide'}
 
 #APLA<- read.csv("APLA_Database.csv")
 #summary(APLA)
@@ -109,7 +109,7 @@ colnames(APLA_T_L3)[2] <- "Year"
 APLA_T_L3$Year<- as.numeric(as.character(APLA_T_L3$Year))
 ```
 
-```{r, Calculate Liberalisation Variable}
+```{r, Calculate Liberalisation Variable, results='hide'}
 
 # Run Regulatory Complexity Code First
 
@@ -319,10 +319,11 @@ st_geometry(Map_APLA_Data) <- Map_APLA_Data$geometry
 
 # Display all countries codified so far + Compass + Scale Bar + labels changed!+ Title. USE THIS
 tm_shape(Map_APLA_Data) + tm_borders("black", lwd= .5) + 
-  tm_layout(title="1990-2020", title.size = 1.5, title.position =c(0.6, "top")) + 
+  tm_layout(title="Countries Codified \nwith APLA,1990-2020", title.size = 1, title.position =c(0.5, "top")) + 
   tm_polygons("Codified", title="Codified APLA Countries", palette= "Blues", style="fixed", breaks=c(0, 0.1, 1), 
               labels=c("Not Codified","Codified Countries")) + tm_compass(position = c(0.3, 0.35)) + 
-  tm_scale_bar(width = 0.22, position = c(0.65, 0.08)) 
+  tm_scale_bar(width = 0.22, position = c(0.65, 0.08)) + tm_text("Country", size = "AREA") + tm_credits("Figure 1. Source: APLA Database", position = c( "left", 0.15))
+                                  
 ```
 
 ## Maps of Policy Measures Included in Legislation 1990 - 2020
