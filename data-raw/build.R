@@ -8,14 +8,14 @@
 library(roxygen2)
 # For package manager: Manually delete Rd files first, then run code again. Roxygen2 will not overwrite existing package.
 devtools::document()
-
+library(dplyr)
 #install.packages("pkgdown")
 
 #usethis::use_pkgdown()
 #library("pkgdown")
-pkgdown::build_site()
+pkgdown::build_site() # this to build the website
 
-usethis::use_github_action("pkgdown")
+usethis::use_github_action("pkgdown") # this to publish it on Github
 ## a few other exploration of the package
 devtools::release()
 # devtools::build_win(version = c("R-release", "R-devel"))
