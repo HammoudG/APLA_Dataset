@@ -18,8 +18,7 @@ get(data("APLA_Map")) //
 get(data("Data_Refugees_UNHCR"))
 
 # APLA_Dataset
-
-Data for the replication of the paper The Asylum Policies in Latin America (APLA) Database: Findings from an Expanded Methodology to Study Refugee Policies in Latin America, 1990-2020, currently under review in "International Migration Review".
+Package and Data for the replication of the paper A Liberal Region in a World of Closed Borders? The Liberalization of Asylum Policies in Latin America, 1990 to 2020. It includes the APLA Database.
 
 The APLA_Paper in the vignette includes the replication code for all the graphs and charts of the paper, as well as the calculation of the main aggregate variables of interest: regulatory complexity and liberalisation. 
 
@@ -31,8 +30,6 @@ APLA_Dataset contains the whole data codified using the APLA methodology. It inc
 Data_APLA_Maps is a slightly modified versions of the dataset above, which allows to better plot the countries in the Latin American region that have been codified. 
 Data_Refugees_UNHCR includes number on 'refugees and people in a refugee-like situation' as identified by the UNHCR, and data on the 'total population' of each country in the specific year, as calculated by UNDESA.
 
-Annex I includes the questionnaire used to codify APLA. 
-Annex II includes the Codebook with the Rules for the codification. 
-Annex III presents a series of maps with the major policy measures adopted over time in each country. 
+Online Appendix in /pdf include: 1. The coding frame used to codify APLA, 2. The Codebook with the Rules for the codification, 3. A series of maps with the major policy measures adopted over time in each country. 
 
 
