@@ -357,7 +357,7 @@ First_Country_Map
 # Free Legal Assistance to Asylum Seeker LA47
 Legal_Map<- tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA47.1_1", title="Figure 11: \nFree Legal Assistance \nSource: APLA", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Not guaranteed","Guaranteed")) + tm_facets(by = "Year")
 Legal_Map
-#tmap_save(First_Country_Map, filename = "Figure_11.jpg")
+#tmap_save(Legal_Map, filename = "Figure_11.jpg")
 ```
 
 
