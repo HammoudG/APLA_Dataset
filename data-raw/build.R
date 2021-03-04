@@ -13,6 +13,7 @@ devtools::document()
 
 #usethis::use_pkgdown()
 #library("pkgdown")
+path<- ".../omarhgallego.com/static/r/APLA"
 pkgdown::build_site()
 
 ## a few other exploration of the package
