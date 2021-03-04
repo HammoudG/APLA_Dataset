@@ -7,9 +7,9 @@ output:
   html_document: default
 ---
 
-```{r setup, include=TRUE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-	echo = FALSE,
+	echo = TRUE,
 	message = FALSE,
 	warning = FALSE
 )

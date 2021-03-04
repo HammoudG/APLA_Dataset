@@ -15,6 +15,7 @@ devtools::document()
 #library("pkgdown")
 pkgdown::build_site()
 
+usethis::use_github_action("pkgdown")
 ## a few other exploration of the package
 devtools::release()
 # devtools::build_win(version = c("R-release", "R-devel"))
