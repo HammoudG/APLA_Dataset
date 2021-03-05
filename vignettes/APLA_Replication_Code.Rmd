@@ -48,6 +48,7 @@ theme_update(plot.title = element_text(hjust = 0.5))
 # Upload APLA Database
 APLA<- APLA::APLA_Database 
 
+library(dplyr)
 # Upload Data for Refugee Numbers only
 APLA_Data_1<- APLA::Data_Refugees_UNHCR         # Data APLA  
 

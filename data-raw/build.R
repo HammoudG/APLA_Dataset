@@ -16,6 +16,9 @@ library(dplyr)
 pkgdown::build_site() # this to build the website
 
 usethis::use_github_action("pkgdown") # this to publish it on Github
+#usethis::use_github_action("check-standard")
+
+
 ## a few other exploration of the package
 devtools::release()
 # devtools::build_win(version = c("R-release", "R-devel"))
