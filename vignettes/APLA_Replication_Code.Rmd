@@ -170,9 +170,8 @@ APLA_Data_Filtered_1<- APLA_Data_1 %>%
 PLOT<- ggplot(APLA_Data_Filtered_1, aes(Year, RefugeeAndLikeSit, col= Country)) +
   geom_line()+
   facet_wrap(~ Country, scales = "free_y")+
-  labs(title = "Figure 2: Refugees and People in Refugee-Like Situation in Latin America", x = "", 
-       caption = "Source: UNHCR")
-  ylab("Refugee Numbers")+
+  labs(title = "Figure 2: Refugees in Latin America", x = "", 
+       caption = "Source: UNHCR", y = "Refugee Numbers")+
   theme(plot.title = element_text("serif", size = "14", hjust = 0.5))+
   theme_bw()
 
@@ -182,7 +181,7 @@ PLOT + scale_y_continuous(labels = comma) +
     scale_x_continuous(breaks = c(1990, 2000, 2010, 2018))+
     theme(legend.position = "none")
 
-#ggsave("Figure_2.jpg")
+#ggsave("Figure_2.jpg", width = 6, height = 4)
 
 ```
 
