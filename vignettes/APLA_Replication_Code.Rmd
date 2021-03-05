@@ -362,6 +362,129 @@ Legal_Map
 ```
 
 
+## Maps of Policy Measures Included in Legislation 1990 - 2020
+```{r, Maps of Policy Measures included in Legislation}
+# Cartagena Refugee Definition LA7
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA7.1_1", title="Cartagena Refugee Definition", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 1.0), labels=c("No or Underdeveloped Legislation","Not Incorporated","Cartagena Incorporated")) + tm_facets(by = "Year")
+
+# Resettling into Legislation  LA5
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA5.1_1", title="Resettlement Policy", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation", "Legislation but No Resettlement","Legislation with Resettlement")) + tm_facets(by = "Year")
+
+# Asylum into Constitution  LA3
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA3.1_1", title="Asylum into Constitution", palette= "Blues", style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("Not Included","Included into Constitution")) + tm_facets(by = "Year")
+
+# First Country of Asylum  Q101
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q101.1_1", title="First Country of Asylum \n Principle", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included into Legislation")) + tm_facets(by = "Year")
+
+# Subsidiary Status Q278
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q278.1_1", title="Subsidiary Protection Status \n or Ad Hoc Legal Status", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included into Legislation")) + tm_facets(by = "Year")
+
+# Environmental Refugees Q204
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q204.1_1", title="Environmental Refugees", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included into Legislation")) + tm_facets(by = "Year")
+
+# Detained Asylum Seekers Q133
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q133.1_1", title="Detention Asylum Seekers", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Not Legal","Legal")) + tm_facets(by = "Year")
+
+# Fast Track for weak asylum claims q188
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q188.1_1", title="Fast Track for Weak Asylum Claims", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included into Legislation")) + tm_facets(by = "Year")
+
+# Written Asylum Request q172
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q172.1_1", title="Written Asylum Request", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Required","Legislation and Required")) + tm_facets(by = "Year")
+
+# Asylum Seeker Right to Interview q174
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q174.1_1", title="Asylum Seekers' Right \n to Interview", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Asylum Seeker Right to Legal Representative q180
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q180.1_1", title="Asylum Seekers' Right to \n a Legal Representative", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Time Limit to Submit Asylum Request q184
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q184.1_1", title="Time Limit to Submit \n an Asylum Request", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Not Time Limit","Time Limit")) + tm_facets(by = "Year")
+
+
+# Special Procedures for Children Asylum Seekers q190
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q190.1_1", title="Special Procedures for \n Children Asylum Seekers", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Right to Work q54
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q54.1_1", title="Right to Work", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Application at border entry q58
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q58.1_1", title="Application at Border \n Entry Possible", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Recognition Duties to International Treaties LA1
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA1.1_1", title="Recognition Duties Imposed by \n International Treaties", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Special Procedures for Mass Influx of Refugees LA11
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA11.1_1", title="Special Procedures to Deal with \n Mass Influx of Refugees", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# No Penalisation for Illegal Entry LA13
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA13.1_1", title="No Penalisation for \n Irregular Entry", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Recognition Declarative Character Refugee Condition LA15
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA15.1_1", title="Recognition Declarative Character \n of Refugee Condition", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Duty of Public Officials to pass on a request for asylum to competent authorities LA17
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA17.1_1", title="Duty of Public Officials to \n Process Asylum Requests", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Right to Family Unity LA23
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA23.1_1", title="Right to Family Unity", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Ease Recognition Professional/Academic Qualifications LA27
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA27.1_1", title="Ease Recognition Profession \nor Academic Qualification", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# ID Mention Refugee Status LA29
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA29.1_1", title="ID Mentions Refugee Status", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","ID does not mention Refugee Status","ID can mention Refugee Status")) + tm_facets(by = "Year")
+
+# Guaranteed Access to Asylum Process LA31
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA31.1_1", title="Guaranteed Access to \n the Asylum Process", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Application can be submitted through UNHCR LA33
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA33.1_1", title="Application can be \n submitted through UNHCR", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Confidentiality as part of Asylum Process LA37
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA37.1_1", title="Confidentiality as Part of \n the Asylum Process", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Lack Documentation no Obstacle to Asylum Request Submission LA39
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA39.1_1", title="Lack Documentation not an \n Obstacle to the Submission \n of an Asylum Request", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Right to Appeal First Instance Decision LA41
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA41.1_1", title="Right to Appeal a \n Negative Asylum Decision", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Appeal Decision Body Independent LA43
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA43.1_1", title="Appeal Decision Body \n Indepdendent from First Instance", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("Appeal not Possible","Appeal Not Independent","Appeal Independent")) + tm_facets(by = "Year")
+
+# Gratuity of Refugee Process LA45
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA45.1_1", title="Gratuity of Asylum \n Process Guaranteed", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Not guaranteed","Guaranteed")) + tm_facets(by = "Year")
+
+# Free Legal Assistance to Asylum Seeker LA47
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA47.1_1", title="Free Legal Assistance", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Not guaranteed","Guaranteed")) + tm_facets(by = "Year")
+
+# Interview Considers Social Background LA49
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA49.1_1", title="Interview Considers Social\n Background of \n Asylum Seeker", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Prohibition to contact country of origin without permission LA51
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA51.1_1", title="Prohibition to Contact \n Country of Origin", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Is UNHCR represented in refugee status decision council LA53
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA53.1_1", title="UNHCR representation \nin National Refugee Council", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Is UNHCR informed if negative last instance decision
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA57.1_1", title="UNHCR informed if Negative Decision", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Reasonable Time Limit to Submit Appeal Request LA59
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA59.1_1", title="Reasonable Time to \n Submit an Appeal", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("Appeal not Possible","Less than 15 Days","15 Days or More")) + tm_facets(by = "Year")
+
+# Special Measures to Guarantee Womens' Access to Asylum Process LA61 
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA61.1_1", title="Special Measures To Guarantee \nWomens' Access to \nthe Asylum Process", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Special Measures for people with special needs LA63 
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA63.1_1", title="Special Measures for \nVulnerable People", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Refugee Status due to Persecution based on Gender LA65 
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA65.1_1", title="Persecution due to \nGender Recognised", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+
+```
+
 ## Additional Plots Not included in the Paper
 ```{r Plotting Residuals}
 
@@ -402,4 +525,5 @@ ggplot(APLA_Data_Filtered, aes(Regulatory_Complexity, Liberalisation))+
   geom_jitter(width=0.5, height= 0.5)+
   geom_smooth()
 ```
+
 
