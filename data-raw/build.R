@@ -16,7 +16,6 @@ library(dplyr)
 #usethis::use_pkgdown()
 #library("pkgdown")
 usethis::use_pkgdown()
-path<- ".../omarhgallego.com/static/r/APLA"
 pkgdown::build_site() # this to build the website
 
 usethis::use_github_action("pkgdown") # this to publish it on Github
