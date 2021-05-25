@@ -15,7 +15,6 @@ library(dplyr)
 #install.packages("dplyr")
 #usethis::use_pkgdown()
 #library("pkgdown")
-usethis:use_pkgdown()
 pkgdown::build_site() # this to build the website
 
 usethis::use_github_action("pkgdown") # this to publish it on Github
