@@ -24,7 +24,7 @@ The APLA_Paper in the vignette includes the replication code for all the graphs 
 
 **APLA Database.csv in /data-raw is the original APLA Dataset.** APLA_Dataset contains the whole data codified using the APLA methodology. It include 19 Latin American countries, using 65 indicators for a 31-years period. 57 of those indicator refer to national legislation, and 8 to the ratification of relevant international agreements. 
 
-**Online Appendix in /pdf include**: 1. The **coding frame used to codify APLA**, 2. The **Codebook with the Rules** for the codification, 3. A **series of maps** with the major policy measures adopted over time in each country. 
+Online Appendix in /pdf include: 1. The coding frame used to codify APLA, 2. The Codebook with the Rules for the codification, 3. A series of maps with the major policy measures adopted over time in each country. 
 
 Data_APLA_Maps is a slightly modified versions of the dataset above, which allows to better plot the countries in the Latin American region that have been codified. 
 Data_Refugees_UNHCR includes number on 'refugees and people in a refugee-like situation' as identified by the UNHCR, and data on the 'total population' of each country in the specific year, as calculated by UNDESA.
