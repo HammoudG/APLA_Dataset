@@ -11,8 +11,6 @@ devtools::document()
 library(dplyr)
 #install.packages("pkgdown")
 
-#install.packages("Rcpp")
-#install.packages("dplyr")
 #usethis::use_pkgdown()
 #library("pkgdown")
 pkgdown::build_site() # this to build the website
