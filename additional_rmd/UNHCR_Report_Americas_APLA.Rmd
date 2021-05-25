@@ -2,10 +2,11 @@
 title: "Report Americas UNHCR"
 author: "Omar Hammoud Gallego"
 date: "07/01/2021"
+output: pdf_document
+bookdown::html_document2: default
 header-includes:
 - \usepackage{setspace}\doublespacing
 - \setlength\parindent{24pt}
-bookdown::html_document2: default
 ---
 <style>
 body {
