@@ -120,7 +120,6 @@
 <code class="sourceCode R"><span class="co"># Upload APLA Database</span>
 <span class="va">APLA</span><span class="op">&lt;-</span> <span class="fu">APLA</span><span class="fu">::</span><span class="va"><a href="../reference/APLA_Database.html">APLA_Database</a></span> 
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="co"># Upload Data for Refugee Numbers only</span>
 <span class="va">APLA_Data_1</span><span class="op">&lt;-</span> <span class="fu">APLA</span><span class="fu">::</span><span class="va"><a href="../reference/Data_Refugees_UNHCR.html">Data_Refugees_UNHCR</a></span>         <span class="co"># Data APLA  </span>
 
@@ -230,7 +229,7 @@
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Country</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">RefugeeAndLikeSit</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 20 x 2
 ##    Country                 m
-##  * &lt;chr&gt;               &lt;dbl&gt;
+##    &lt;chr&gt;               &lt;dbl&gt;
 ##  1 Argentina           11901
 ##  2 Bolivia               787
 ##  3 Brazil              20783
