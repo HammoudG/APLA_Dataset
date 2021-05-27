@@ -20,6 +20,7 @@ path<- ".../omarhgallego.com/static/r/APLA"
 pkgdown::build_site() # this to build the website
 
 usethis::use_github_action("pkgdown") # this to publish it on Github
+
 #usethis::use_github_action("check-standard")
 
 
@@ -37,7 +38,7 @@ library(readxl)
 library(readr)
 
 
-Data_Refugees_UNHCR <- read.csv("C:/Users/omarh/Desktop/Git_APLA/APLA_Dataset/data-raw/Data_Refugees_UNHCR.csv")
+Data_Refugees_UNHCR <- read.csv("C:/Users/omarh/Documents/GitHub/APLA_Dataset/data-raw/Data_Refugees_UNHCR.csv")
 save(Data_Refugees_UNHCR, file =  "data/Data_Refugees_UNHCR.RData", version = 2)
 sinew::makeOxygen(Data_Refugees_UNHCR, add_fields = "source")
 
