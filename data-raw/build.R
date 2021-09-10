@@ -19,6 +19,8 @@ usethis::use_pkgdown()
 path<- ".../omarhgallego.com/static/r/APLA"
 pkgdown::build_site() # this to build the website
 
+
+library(dplyr)
 usethis::use_github_action("pkgdown") # this to publish it on Github
 
 #usethis::use_github_action("check-standard")
