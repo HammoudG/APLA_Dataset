@@ -27,6 +27,7 @@ library("dplyr")
 library("ggplot2")
 theme_set(theme_bw())
 library("sf")
+
 library("tmap")
 library("rnaturalearth")
 library("rnaturalearthdata")
@@ -45,6 +46,16 @@ theme_update(plot.title = element_text(hjust = 0.5))
 ```
 
 ```{r, Upload Data}
+
+library(devtools)
+
+library(usethis)
+
+install_github("hammoudg/apla_dataset")
+
+library(APLA)
+
+
 # Upload APLA Database
 APLA<- APLA::APLA_Database 
 
