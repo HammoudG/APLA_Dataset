@@ -19,7 +19,7 @@ APLA_Map<- APLA::APLA_Map //
 APLA_Data_1<- APLA::Data_Refugees_UNHCR
 
 # APLA_Dataset
-Package and Data for the replication of the paper **A Liberal Region in a World of Closed Borders? The Liberalization of Asylum Policies in Latin America, 1990 to 2020.**
+Package and Data for the replication of the paper **Hammoud-Gallego, O. (2022) ‘A Liberal Region in a World of Closed Borders? The Liberalization of Asylum Policies in Latin America, 1990–2020’, International Migration Review, 56(1), pp. 63–96. doi: 10.1177/01979183211026202. [Open Access]**
 
 The APLA_Paper in the vignette includes the replication code for all the graphs and charts of the paper, as well as the calculation of the main aggregate variables of interest: regulatory complexity and liberalisation. 
 
