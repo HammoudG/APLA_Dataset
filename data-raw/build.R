@@ -10,6 +10,7 @@ library(roxygen2)
 devtools::document()
 
 #install.packages("pkgdown")
+library("pkgdown")
 
 #usethis::use_pkgdown()
 #library("pkgdown")
