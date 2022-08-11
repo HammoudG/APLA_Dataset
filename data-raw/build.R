@@ -40,15 +40,15 @@ library(readxl)
 library(readr)
 
 
-Data_Refugees_UNHCR <- read.csv("C:/Users/omarh/Documents/GitHub/APLA_Dataset/data-raw/Data_Refugees_UNHCR.csv")
+Data_Refugees_UNHCR <- read.csv("/Users/HammoudG/Documents/GitHub/APLA_Dataset/data-raw/Data_Refugees_UNHCR.csv")
 save(Data_Refugees_UNHCR, file =  "data/Data_Refugees_UNHCR.RData", version = 2)
 sinew::makeOxygen(Data_Refugees_UNHCR, add_fields = "source")
 
-APLA_Database <- read.csv("data-raw/APLA_Database.csv")
+APLA_Database <- read.csv("/Users/HammoudG/Documents/GitHub/APLA_Dataset/data-raw/APLA_Database.csv")
 save(APLA_Database, file =  "data/APLA_Database.RData", version = 2)
 sinew::makeOxygen(APLA_Database, add_fields = "source")
 
-APLA_Map <- read.csv("data-raw/Data_APLA_Maps.csv")
+APLA_Map <- read.csv("/Users/HammoudG/Documents/GitHub/APLA_Dataset/data-raw/Data_APLA_Maps.csv")
 save(APLA_Map, file =  "data/APLA_Map.RData", version=2)
 sinew::makeOxygen(APLA_Map, add_fields = "source")
 
