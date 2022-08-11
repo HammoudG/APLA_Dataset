@@ -1,0 +1,279 @@
+---
+title: "Report Americas UNHCR"
+author: "Omar Hammoud Gallego"
+date: "07/01/2021"
+header-includes:
+- \usepackage{setspace}\doublespacing
+- \setlength\parindent{24pt}
+bookdown::html_document2: default
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup, include=TRUE, echo = FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r, Upload Packages}
+
+# Upload Packages for Data analysis and Map
+library("dplyr")
+library("ggplot2")
+theme_set(theme_bw())
+library("sf")
+library("tmap")
+library("rnaturalearth")
+library("rnaturalearthdata")
+library("tidyr")
+library("stringr")  # To do text analysis 
+library(rgeos)
+
+library("bookdown")
+# For color
+library("RColorBrewer")
+library("viridis")
+library("ggrepel") # might be useful later
+
+# Plot all titles in ggplot2 centered
+theme_update(plot.title = element_text(hjust = 0.5))
+
+```
+
+```{r, Upload Data, echo = FALSE}
+#devtools::install_github("hammoudg/apla_dataset")
+#library(APLA)
+
+# Upload APLA Database
+APLA<- APLA::APLA_Database 
+
+# Upload Data for Refugee Numbers only
+APLA_Data_1<- APLA::Data_Refugees_UNHCR         # Data APLA  
+
+# Upload Data to Map All Countries Latin America
+APLA_Map<- APLA::APLA_Map                      # Data APLA for Mapping 
+
+```
+
+```{r, Calculate Regulatory Complexity, echo = FALSE}
+
+# Transform as Tibble
+APLA_T <- as_tibble(APLA)
+#APLA_T
+
+# Filter out columns on international agreements
+APLA_T1<- APLA_T %>% select(1,2, 35:262)
+
+# Only Questions of Liberalisation and Comments included
+APLA_T2<- APLA_T1 %>% select(1,2, ends_with(c("2_1","3_1_1")))
+
+# Select only commentary section to calculate number "Art" to calculate Regulatory Complexity
+APLA_T3<- APLA_T2 %>%
+  select(1,2, ends_with("3_1_1"))
+
+# Delete of first row
+APLA_T3= APLA_T3[-1,]
+
+# Pivot Table for data manipulation
+APLA_T_L <- pivot_longer(APLA_T3, cols = colnames(APLA_T3)[3:length(colnames(APLA_T3))],
+                        names_to = "Question", values_to = "Comment")
+
+# Transform variable from factor to string
+APLA_T_L$Comment<- as.character(APLA_T_L$Comment)
+
+# Value 1 if "Art" present "0" otherwise
+APLA_T_L1<- APLA_T_L %>%
+  mutate(Included= ifelse(grepl("Art", APLA_T_L$Comment), 1,0))
+
+# Aggregate values of Included per Country, Year, and Question
+APLA_T_L2<- APLA_T_L1 %>%
+  group_by(Q1,Q2) %>%
+  summarise(Frequency= sum(Included))
+
+# Calculate Percentage by looking at number of "Included" per Country/Year as a % of total number of indicators = 57
+APLA_T_L3<- APLA_T_L2 %>%
+    mutate(Total=57) %>%
+    mutate(Regulatory_Complexity= Frequency/Total*100) 
+
+# Round Regulatory Complexity
+APLA_T_L3$Regulatory_Complexity<- round(APLA_T_L3$Regulatory_Complexity)
+
+# Rename Country and Year, and Year transformed in numeric
+colnames(APLA_T_L3)[1] <- "Country"
+colnames(APLA_T_L3)[2] <- "Year"
+APLA_T_L3$Year<- as.numeric(as.character(APLA_T_L3$Year))
+```
+
+```{r, Calculate Liberalisation Variable, echo = FALSE, include = FALSE}
+
+# Run Regulatory Complexity Code First
+
+# Only Questions of Liberalisation and Comments included
+APLA_T4<- APLA_T1 %>% select(1,2, ends_with(c("2_1")))
+
+# Delete of first row
+APLA_T4= APLA_T4[-1,]
+
+# Pivot Table for data manipulation
+APLA_T_L4 <- pivot_longer(APLA_T4, cols = colnames(APLA_T4)[3:length(colnames(APLA_T4))],
+                        names_to = "Question", values_to = "Liberalisation_Score")
+
+# Mutate Liberalisation Score into numeric
+APLA_T_L4$Liberalisation_Score<- as.numeric(as.character(APLA_T_L4$Liberalisation_Score, na.rm= TRUE))
+APLA_T_L4$Question<- as.factor(APLA_T_L4$Question)
+
+APLA_T_L4[complete.cases(APLA_T_L4),]
+
+# Aggregate values of Included per Country, Year, and Question
+APLA_T_L5<- APLA_T_L4 %>%
+  na.omit() %>%
+  group_by(Q1,Q2) %>%
+  summarise(Liberal_Policies= sum(Liberalisation_Score == 0), Restrictive_Policies= sum(Liberalisation_Score == 1)) %>%
+  mutate(Sum_Both = Liberal_Policies + Restrictive_Policies) %>%
+  mutate(Liberalisation= Liberal_Policies/ Sum_Both)
+  
+# Round Liberalisation
+APLA_T_L5$Liberalisation<- round(APLA_T_L5$Liberalisation, digits = 2)
+
+# Take only values where Total_Both => 9
+APLA_T_L6<- APLA_T_L5[APLA_T_L5$Sum_Both >= 9, ]
+
+# Rename Country and Year, and Year transformed in numeric
+colnames(APLA_T_L6)[1] <- "Country"
+colnames(APLA_T_L6)[2] <- "Year"
+APLA_T_L6$Year<- as.numeric(as.character(APLA_T_L6$Year))
+
+
+```
+
+# Introduction
+
+To provide some context on the legal framework on asylum in Latin America, here we present the results of a recent analysis of the asylum policies of 19 Latin American countries over the last 30 years. Following the 1984 Cartagena Refugee Declaration, the UNHCR together with governments from the region reconvened in 1994 in San Jose, Costa Rica, in 2004 in Mexico, and 2014 in Brazil to set out a series of declarations and action plans that served as a basis for the development of a regional framework for the protection of refugees.  
+
+The results of these efforts are visible in the Figures below. Over the last three decades countries across Latin America have either adopted for the first time, or reformed, their asylum legislation. This has put the region at the forefront in the adoption of mostly progressive legal frameworks for the protection of asylum seekers and refugees. As it can be noticed further below, this process has clearly been more marked in South America than in Central America and Mexico. 
+
+```{r Plots of Development of Policy Over-Time Across Countries for Paper 1. Regulatory Complexity, fig.cap='Source: APLA Database.'}
+ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, col= Country)) +
+  geom_line()+
+  facet_wrap(.~ Country, ncol= 5)+
+  theme(legend.position = "none")+  # to remove legend
+  ggtitle("Regulatory Complexity in Asylum Policies across Latin America, 1990-2020") +
+  ylab("Regulatory Complexity")
+ 
+```
+
+```{r, Plot Regulatory Complexity Over Time with Subregion, fig.cap='Source: APLA Database.'}
+library(data.table)
+
+APLA_T_L3<- APLA_T_L3 %>% mutate(South_America = if_else(Country %in% c("Argentina", "Bolivia", "Brazil", "Chile", "Colombia","Ecuador", "Paraguay", "Peru", "Uruguay", "Venezuela"), "1", "0"))
+
+######
+
+ggplot(APLA_T_L3, aes(Year, Regulatory_Complexity, shape=factor(South_America, labels=c("Rest of Latin America", "South America")), color=factor(South_America, labels=c("Rest of Latin America", "South America")))) +
+  geom_jitter(height=0.8, width = 0.7)+
+  geom_smooth(se=FALSE, aes(color=factor(South_America, labels=c("Rest of Latin America", "South America"))))+
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2015, 2020))+
+  scale_color_brewer(palette="Dark2")+
+  ggtitle("Regulatory Complexity, Latin America by Subregion")+
+  ylab("Regulatory Complexity")+
+  theme(plot.title = element_text("serif", size = "14", hjust = 0.5))+
+  labs(color="Subregion", shape="Subregion")
+```
+
+
+```{r, Prepare data for plotting policy measures, echo = FALSE}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+#class(world)
+
+# Rename column where names is "name", so that I can merge with my other dataset
+colnames(APLA)[1] <- "Name"
+colnames(APLA)[2] <- "Year"
+colnames(world)[4] <- "Name"
+
+# Create Database with Selected Years for Plotting
+Filtered_APLA<- APLA %>%                                       
+  filter(Year %in% c("1990", "2000", "2010", "2020"))
+
+# To Remove level from dropped rows!! 
+Filtered_APLA<- droplevels(Filtered_APLA, drop=TRUE)
+
+# VERY IMPORTANT TO MERGE MAP AND DATA 
+Policy_Maps<- merge(Filtered_APLA, world, by="Name")
+
+# to transform IMPALA from data frame into sf and data.frame
+st_geometry(Policy_Maps) <- Policy_Maps$geometry
+
+# to add colour to map
+library(RColorBrewer)
+#display.brewer.all()
+```
+
+Within this context, some specific policy measures adopted across the region are noteworthy. 
+First, over the last 30 years most countries across the region have included into their legislation the so-called 'Cartagena Refugee Definition', which extends the 1951 Geneva Convention Refugee Definition to include:
+
+> 'persons who have fled their country because their lives, security or freedom have been threatened by generalized violence, foreign aggression, internal conflicts, massive violation of human rights or other circumstances which have seriously disturbed public order'.
+
+As of 2020, Cuba, the Dominican Republic, Panama and Venezuela were the only countries that had not included the Cartagena Refugee Definition in their legislative frameworks.
+
+```{r, cartagena Refugee Definition, fig.cap='Source: APLA Database.'}
+# Cartagena Refugee Definition LA7
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA7.1_1", title="Cartagena Refugee Definition", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 1.0), labels=c("No or Underdeveloped Legislation","Not Incorporated","Cartagena Incorporated")) + tm_facets(by = "Year")
+```
+
+
+# Innovative Policy Measures 
+
+As this regional framework for the protection of refugees in Latin America developed, a series of regional standards have been widely incorporated into the national legislation of most countries in the region. To name but a few, special procedures for the protection of children were introduced, as well as the right to submit the asylum application through the UNHCR, as shown below.
+
+```{r, children and UNHCR, fig.cap='Source: APLA Database.'}
+# Special Procedures for Children Asylum Seekers q190
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q190.1_1", title="Special Procedures for \n Children Asylum Seekers", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Application can be submitted through UNHCR LA33
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA33.1_1", title="Application can be \n submitted through UNHCR", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+```
+
+In addition to these, fundamental rights, such as the right to work have been almost universally adopted, with few exceptions. In some countries, the inclusion of gender as a possible cause of persecution, and the explicit mention that the lack of documents should not represent an obstacle to any individual requesting asylum represent a clear milestone for the protection of refugees in the region. 
+
+```{r, right to work documents and gender, fig.cap='Source: APLA Database.'}
+# Right to Work q54
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q54.1_1", title="Right to Work", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Lack Documentation no Obstacle to Asylum Request Submission LA39
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA39.1_1", title="Lack Documentation not an \n Obstacle to the Submission \n of an Asylum Request", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Refugee Status due to Persecution based on Gender LA65 
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA65.1_1", title="Persecution due to \nGender Recognised", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+```
+
+
+# Challenges Ahead
+
+Despite the widely recognized advances in the legislation on asylum across the region, the recent Venezuelan displacement has laid bare how underdeveloped the actual implementation mechanisms are, and how little resources have been allocated to implement such policies. It is for this reason that - overwhelmed by the growing number of Venezuelan nationals - most receiving countries have instead opted to develop or use 'ad hoc' migratory permits to process these entrants, even if many Venezuelan nationals might have otherwise qualified for asylum. Procedures to deal with mass influxes of refugees - mentioned in pieces of legislation across the region - were not implemented. 
+
+```{r, special procedures and subsidiary, fig.cap='Source: APLA Database.'}
+# Special Procedures for Mass Influx of Refugees LA11
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("LA11.1_1", title="Special Procedures to Deal with \n Mass Influx of Refugees", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included in Legislation")) + tm_facets(by = "Year")
+
+# Subsidiary Status Q278
+tm_shape(Policy_Maps) + tm_borders("black", lwd= .5) + tm_polygons("Q278.1_1", title="Subsidiary Protection Status \n or Ad Hoc Legal Status", palette= c("#ef8a62","#f7f7f7", "#67a9cf"), style="fixed", breaks=c(0.0, 0.9, 1.0), labels=c("No or Underdeveloped Legislation","Legislation but Not Included","Included into Legislation")) + tm_facets(by = "Year")
+```
+
+# Conclusion 
+
+Despite the unquestionable advances in the adoption of progressive legislation for the protection of refugees, implementation across the region has been lacking, at best. As of January 2021, only Brazil and Mexico had applied their legislation to give recognition to refugees according to the Cartagena Refugee Definition, while Peru had been accepting asylum requests, although very few were actually been processed.
+
+In the context of the Venezuelan displacement, recognizing certain individuals and families through the asylum systems, instead of 'ad hoc' migratory permits, might bring several advantages: first, across many countries in the region, these migratory permits, such as the PEP in Colombia, or the PTP in Peru, do not allow applicants to build up time to then apply for permanent residency, living many Venezuelans trying to renew their permits, and in many cases just staying irregularly in the host country. 
+
+Second, a functioning asylum system would allow to identify individuals and families with special needs, especially if they are seeking asylum on Geneva Convention grounds. Last, having identified those individuals and families with special needs, the UNHCR would be able to step in and support the government with the implementation and assessment of its policies, thanks to its experience dealing with such situations across the globe. As shown above, the necessary legislation is already in place, so that delivering it for refugees would improve both the well-being of asylum applicants, and consequently of the hosting communities as well. 
+
+
+
+
+
