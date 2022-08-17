@@ -14,7 +14,7 @@ library("pkgdown")
 
 #usethis::use_pkgdown()
 #library("pkgdown")
-path<- ".../omarhgallego.com/static/r/APLA"
+#path<- ".../omarhgallego.com/static/r/APLA"
 pkgdown::build_site() # this to build the website
 
 
